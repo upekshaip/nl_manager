@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:http_session/http_session.dart';
 import 'package:nl_manager/components/my_button.dart';
 import 'package:nl_manager/components/my_loading.dart';
 import 'package:nl_manager/components/my_text_feild.dart';
+import 'package:nl_manager/pages/course_page.dart';
 import 'package:nl_manager/tasks/login_task.dart';
+import 'package:nl_manager/tasks/session_state.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -30,7 +32,10 @@ class _LoginPageState extends State<LoginPage> {
     setState(() {
       isLoading = true;
     });
-    final session = HttpSession();
+
+    final sessionProvider = context.read<SessionStateProvider>();
+    final session = sessionProvider.getMySession();
+
     var myLogin = Login(username: usernameController.text, password: passwordController.text, session: session);
     var tokens = await myLogin.getToken();
 
@@ -41,15 +46,21 @@ class _LoginPageState extends State<LoginPage> {
       });
       return;
     }
-    if (tokens!.containsKey("cookie")) {
+    if (tokens.containsKey("cookie")) {
       setState(() {
-        loginStatus = "Login successful";
+        sessionProvider.setTokens(tokens);
+        sessionProvider.setUser(usernameController.text, passwordController.text);
+        loginStatus = "";
         isLoading = false;
       });
+      if (mounted) {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const CoursePage()),
+          (route) => false, // Remove all routes
+        );
+      }
     }
-
-    print("Username: ${usernameController.text}");
-    print("Password: ${passwordController.text}");
   }
 
   @override

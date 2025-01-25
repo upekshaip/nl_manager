@@ -1,6 +1,5 @@
 // import 'package:html/parser.dart' show parse;
 import 'dart:convert';
-
 import 'package:http_session/http_session.dart';
 
 class Course {
@@ -12,8 +11,7 @@ class Course {
 
   Course({required this.tokens, required this.session, required this.reverseDays});
 
-  Future<Map<String, dynamic>?> getCourses() async {
-    print("Getting courses...");
+  Future<Map<String, dynamic>> getCourses() async {
     try {
       var courseJsonData = [
         {
@@ -48,11 +46,10 @@ class Course {
       if (courseData[0]["error"] == true) {
         throw Exception("Failed to get courses");
       }
-
-      return {"courses": courseData, "todos": todoData};
+      return {"courses": courseData[0]["data"]["courses"], "todos": todoData};
     } catch (e) {
-      print(e);
-      return null;
+      // print(e);
+      return {"error": e.toString()};
     }
   }
 }
