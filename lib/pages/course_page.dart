@@ -3,6 +3,8 @@ import 'package:nl_manager/tasks/course_task.dart';
 import 'package:nl_manager/tasks/session_state.dart';
 import 'package:provider/provider.dart';
 
+import '../components/my_list.dart';
+
 class CoursePage extends StatefulWidget {
   const CoursePage({super.key});
 
@@ -34,11 +36,21 @@ class _CoursePageState extends State<CoursePage> {
       });
       return;
     }
+    var finalData = await course.getAllCourseInfo(courseData["courses"]);
+    if (finalData == null) {
+      setState(() {
+        error = "Failed to get course info";
+        isLoading = false;
+        isLoaded = false;
+      });
+      return;
+    }
+
     setState(() {
       isLoading = false;
       isLoaded = true;
       error = "";
-      courseData = courseData?["courses"];
+      courseData["courses"] = finalData;
     });
   }
 
@@ -53,10 +65,10 @@ class _CoursePageState extends State<CoursePage> {
                   title: const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16.0),
                       child: Text(
-                        'Course Page',
+                        'Modules',
                         style: TextStyle(color: Colors.white),
                       )),
-                  automaticallyImplyLeading: false,
+                  // automaticallyImplyLeading: false,
                   actions: [
                     Padding(
                       padding: const EdgeInsets.only(right: 16),
@@ -80,70 +92,7 @@ class _CoursePageState extends State<CoursePage> {
                             for (var entry in mySession.tokens.entries) Text('${entry.key}: ${entry.value}'),
                           ],
                         ),
-                      if (isLoaded && !isLoading)
-                        Expanded(
-                          child: ListView.builder(
-                            itemCount: courseData.length,
-                            itemBuilder: (context, index) {
-                              final course = courseData[index];
-                              return Card(
-                                margin: const EdgeInsets.all(8.0),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      // Course Name
-                                      Text(
-                                        course["fullname"],
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 8),
-                                      // Course Details
-                                      // Text('ID: ${course["id"]}'),
-                                      // Text('${course["fullnamedisplay"]}'),
-                                      const SizedBox(height: 8),
-                                      // Course Progress
-                                      Row(
-                                        children: [
-                                          const Text('Progress: '),
-                                          Expanded(
-                                            child: LinearProgressIndicator(
-                                              value: (course["progress"] as int) / 100,
-                                              backgroundColor: Colors.grey.shade300,
-                                              color: Colors.blue.shade500,
-                                            ),
-                                          ),
-                                          const SizedBox(width: 8),
-                                          Text('${course["progress"]}%'),
-                                        ],
-                                      ),
-                                      const SizedBox(height: 8),
-                                      // View URL
-                                      GestureDetector(
-                                        onTap: () {},
-                                        child: Text(
-                                          'View Course',
-                                          style: TextStyle(
-                                            color: Colors.blue.shade800,
-                                            decoration: TextDecoration.underline,
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 8,
-                                        width: 8,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
+                      if (isLoaded && !isLoading) MyCourseList(courses: courseData["courses"]),
                     ],
                   ),
                 ),
