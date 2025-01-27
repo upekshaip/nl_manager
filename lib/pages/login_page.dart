@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nl_manager/components/my_button.dart';
 import 'package:nl_manager/components/my_loading.dart';
 import 'package:nl_manager/components/my_text_feild.dart';
-import 'package:nl_manager/pages/course_page.dart';
+import 'package:nl_manager/pages/menu_page.dart';
 import 'package:nl_manager/tasks/login_task.dart';
 import 'package:nl_manager/tasks/session_state.dart';
 import 'package:provider/provider.dart';
@@ -56,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
       if (mounted) {
         Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => const CoursePage()),
+          MaterialPageRoute(builder: (context) => const MenuPage()),
           (route) => false, // Remove all routes
         );
       }
@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         body: SafeArea(
             child: Center(
           child: Column(
@@ -74,19 +74,16 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               // logo
               Image.asset(
-                'assets/NLearn.png',
+                'assets/NLearn_Bg.png',
                 height: 75,
               ),
               const SizedBox(
                 height: 60,
               ),
               // welcome message
-              const Text(
+              Text(
                 "Welcome to NL File Manager",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.grey.shade500),
               ),
               const SizedBox(
                 height: 25,
@@ -131,11 +128,11 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               // developer info
               const SizedBox(
-                height: 16,
+                height: 8,
               ),
-              const Text(
+              Text(
                 "Developed by upekshaip",
-                style: TextStyle(fontSize: 14),
+                style: TextStyle(fontSize: 14, color: Colors.grey.shade500),
               )
             ],
           ),

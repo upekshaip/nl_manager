@@ -3,7 +3,7 @@ import 'package:nl_manager/tasks/course_task.dart';
 import 'package:nl_manager/tasks/session_state.dart';
 import 'package:provider/provider.dart';
 
-import '../components/my_list.dart';
+import '../components/course/my_list.dart';
 
 class CoursePage extends StatefulWidget {
   const CoursePage({super.key});
@@ -14,8 +14,6 @@ class CoursePage extends StatefulWidget {
 
 class _CoursePageState extends State<CoursePage> {
   bool isLoading = false;
-  dynamic courseData = {"courses": [], "todos": []};
-  bool isLoaded = false;
   String error = "";
 
   void refresh() async {
@@ -27,12 +25,11 @@ class _CoursePageState extends State<CoursePage> {
     final mySession = context.read<SessionStateProvider>();
     final session = mySession.getMySession();
     final course = Course(tokens: mySession.tokens.cast<String, String?>(), session: session, reverseDays: 15);
-    courseData = await course.getCourses();
+    Map<String, dynamic> courseData = await course.getCourses();
     if (courseData.containsKey("error")) {
       setState(() {
         error = courseData["error"];
         isLoading = false;
-        isLoaded = false;
       });
       return;
     }
@@ -41,16 +38,14 @@ class _CoursePageState extends State<CoursePage> {
       setState(() {
         error = "Failed to get course info";
         isLoading = false;
-        isLoaded = false;
       });
       return;
     }
 
     setState(() {
       isLoading = false;
-      isLoaded = true;
       error = "";
-      courseData["courses"] = finalData;
+      mySession.setCourseData(finalData);
     });
   }
 
@@ -60,14 +55,22 @@ class _CoursePageState extends State<CoursePage> {
   ) {
     return Consumer<SessionStateProvider>(
         builder: ((context, mySession, child) => Scaffold(
+              backgroundColor: Colors.black,
               appBar: AppBar(
-                  backgroundColor: Colors.blue.shade900,
-                  title: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Text(
-                        'Modules',
-                        style: TextStyle(color: Colors.white),
-                      )),
+                  leading: IconButton(
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  backgroundColor: Colors.black,
+                  title: const Text(
+                    'Modules',
+                    style: TextStyle(color: Colors.white),
+                  ),
                   // automaticallyImplyLeading: false,
                   actions: [
                     Padding(
@@ -86,13 +89,13 @@ class _CoursePageState extends State<CoursePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       if (isLoading) const CircularProgressIndicator(),
-                      if (!isLoaded)
+                      if (mySession.courseData.isEmpty)
                         Column(
                           children: [
-                            for (var entry in mySession.tokens.entries) Text('${entry.key}: ${entry.value}'),
+                            for (var entry in mySession.tokens.entries) Text('${entry.key}: ${entry.value}', style: TextStyle(color: Colors.grey.shade400)),
                           ],
                         ),
-                      if (isLoaded && !isLoading) MyCourseList(courses: courseData["courses"]),
+                      if (mySession.courseData.isNotEmpty && !isLoading) MyCourseList(courses: mySession.courseData),
                     ],
                   ),
                 ),

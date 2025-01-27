@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nl_manager/pages/course_page.dart';
 import 'package:nl_manager/pages/login_page.dart';
+import 'package:nl_manager/pages/menu_page.dart';
 import 'package:nl_manager/tasks/session_state.dart';
 import 'package:provider/provider.dart';
 
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
         home: const LoginPage(),
         routes: {
           '/login': (context) => const LoginPage(),
-          '/home': (context) => const CoursePage(),
+          '/menu': (context) => const MenuPage(),
+          '/modules': (context) => const CoursePage(),
         },
       ),
     );

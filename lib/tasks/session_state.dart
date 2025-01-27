@@ -6,6 +6,7 @@ class SessionStateProvider extends ChangeNotifier {
   String username = "";
   String password = "";
   Map<String, Object?> tokens = {};
+  List<dynamic> courseData = [];
 
   HttpSession getMySession() {
     return session;
@@ -18,6 +19,11 @@ class SessionStateProvider extends ChangeNotifier {
 
   void setTokens(Map<String, Object?> newTokens) {
     tokens = newTokens;
+    notifyListeners();
+  }
+
+  void setCourseData(List<dynamic> newCourseData) {
+    courseData = newCourseData;
     notifyListeners();
   }
 

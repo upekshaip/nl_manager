@@ -10,10 +10,10 @@ class MyButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 16),
+        padding: EdgeInsets.symmetric(vertical: 10),
         margin: EdgeInsets.symmetric(horizontal: 25),
-        decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(30)),
-        child: Center(
+        decoration: BoxDecoration(color: Colors.grey.shade800, borderRadius: BorderRadius.circular(30), border: Border.all(color: Colors.grey.shade800)),
+        child: const Center(
           child: Text(
             "LogIn",
             style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
