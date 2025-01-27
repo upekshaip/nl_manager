@@ -13,16 +13,8 @@ class Course {
 
   Course({required this.tokens, required this.session, required this.reverseDays});
 
-  Future<Map<String, dynamic>> getCourses() async {
+  Future<Map<String, dynamic>> getTodos() async {
     try {
-      var courseJsonData = [
-        {
-          "index": 0,
-          "methodname": "core_course_get_enrolled_courses_by_timeline_classification",
-          "args": {"offset": 0, "limit": 0, "classification": "all", "sort": "fullname", "customfieldname": "", "customfieldvalue": ""}
-        }
-      ];
-
       // get time
       var now = DateTime.now();
       var oneYearAgo = now.subtract(Duration(days: reverseDays));
@@ -35,16 +27,46 @@ class Course {
           "args": {"limitnum": 26, "timesortfrom": oneYearAgoTimestamp, "limittononsuspendedevents": true}
         }
       ];
-
-      var courseRes = await session.post(Uri.parse(getCourseUrl + tokens['sesskey']!), body: jsonEncode(courseJsonData));
       var todoRes = await session.post(Uri.parse(todoDataUrl + tokens['sesskey']!), body: jsonEncode(todoJsonData));
 
-      // print("Course Response: ${courseRes.body}");
       var todoData = jsonDecode(todoRes.body);
-      var courseData = jsonDecode(courseRes.body);
       if (todoData[0]["error"] == true) {
         throw Exception("Failed to get courses");
       }
+
+      // filter out
+      var myData = todoData[0]["data"]["events"];
+
+      List<dynamic> filtered = [];
+      for (var item in myData) {
+        var temp = item["course"];
+        temp.remove("courseimage");
+        var others = item;
+        others.remove("course");
+        var deadline = parse(others["formattedtime"]).querySelector("a");
+        filtered.add({"course": temp, "others": others, "deadline": "${deadline!.text}, ${others["formattedtime"].split(",")[2].toString().replaceAll('</span>', '')}"});
+      }
+
+      return {"todos": filtered};
+    } catch (e) {
+      // print(e);
+      return {"error": e.toString()};
+    }
+  }
+
+  Future<Map<String, dynamic>> getCourses() async {
+    try {
+      var courseJsonData = [
+        {
+          "index": 0,
+          "methodname": "core_course_get_enrolled_courses_by_timeline_classification",
+          "args": {"offset": 0, "limit": 0, "classification": "all", "sort": "fullname", "customfieldname": "", "customfieldvalue": ""}
+        }
+      ];
+
+      var courseRes = await session.post(Uri.parse(getCourseUrl + tokens['sesskey']!), body: jsonEncode(courseJsonData));
+
+      var courseData = jsonDecode(courseRes.body);
       if (courseData[0]["error"] == true) {
         throw Exception("Failed to get courses");
       }
@@ -56,7 +78,7 @@ class Course {
         return course;
       }).toList();
 
-      return {"courses": filteredData, "todos": todoData};
+      return {"courses": filteredData};
     } catch (e) {
       // print(e);
       return {"error": e.toString()};

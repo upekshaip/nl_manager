@@ -13,21 +13,29 @@ class MyCourseListItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           for (var section in sections)
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const SizedBox(height: 4),
-                Text(
-                  "• ${section["section_name"]}",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey.shade300,
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+              margin: const EdgeInsets.only(bottom: 8),
+              decoration: BoxDecoration(
+                color: Colors.grey.shade900,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const SizedBox(height: 4),
+                  Text(
+                    "• ${section["section_name"]}",
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey.shade300,
+                    ),
                   ),
-                ),
-                MySectionItem(sectionContents: section["section_content"]),
-                const SizedBox(height: 4),
-              ],
+                  MySectionItem(sectionContents: section["section_content"]),
+                  const SizedBox(height: 4),
+                ],
+              ),
             ),
         ],
       ),

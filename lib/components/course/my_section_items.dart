@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nl_manager/tasks/helpers.dart';
 
 class MySectionItem extends StatelessWidget {
   final dynamic sectionContents;
@@ -13,15 +13,8 @@ class MySectionItem extends StatelessWidget {
       children: [
         for (var sectionContent in sectionContents)
           ListTile(
-            trailing: SvgPicture.network(sectionContent["image"], width: 20, height: 20),
+            trailing: MyHelper().getIcons(sectionContent["ext"], sectionContent["url"]),
             title: Text(sectionContent["file_name"], style: TextStyle(fontSize: 12, color: Colors.grey.shade300)),
-            // tileColor: Colors.grey.shade900,
-            shape: Border(
-              bottom: BorderSide(
-                color: Colors.grey.shade900,
-                width: 1,
-              ),
-            ),
           ),
       ],
     );

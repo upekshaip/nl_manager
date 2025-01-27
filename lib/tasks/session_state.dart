@@ -2,14 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:http_session/http_session.dart';
 
 class SessionStateProvider extends ChangeNotifier {
-  HttpSession session = HttpSession();
+  late HttpSession session;
   String username = "";
   String password = "";
   Map<String, Object?> tokens = {};
   List<dynamic> courseData = [];
+  List<dynamic> todos = [];
 
   HttpSession getMySession() {
     return session;
+  }
+
+  void startNewSession() {
+    session = HttpSession();
+    notifyListeners();
   }
 
   void setMySession(HttpSession newSession) {
@@ -27,9 +33,22 @@ class SessionStateProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setTodos(List<dynamic> newTodos) {
+    todos = newTodos;
+    notifyListeners();
+  }
+
   void setUser(String newUsername, String newPassword) {
     username = newUsername;
     password = newPassword;
+    notifyListeners();
+  }
+
+  void logOut() {
+    session.clear();
+    session.close();
+    tokens = {};
+    courseData = [];
     notifyListeners();
   }
 }
