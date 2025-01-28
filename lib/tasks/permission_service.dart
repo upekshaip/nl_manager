@@ -6,8 +6,6 @@ class MyPermissions {
     var plugin = DeviceInfoPlugin();
     var android = await plugin.androidInfo;
     var storageStatus = android.version.sdkInt < 33 ? await Permission.storage.request() : PermissionStatus.granted;
-
-    var status = await Permission.storage.request();
     if (storageStatus == PermissionStatus.granted) {
       return true;
     } else if (storageStatus == PermissionStatus.denied) {
