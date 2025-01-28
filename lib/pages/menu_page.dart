@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:nl_manager/components/logout_btn.dart';
 import 'package:nl_manager/components/my_square_btn.dart';
 import 'package:nl_manager/components/todos/my_todo_list.dart';
+import 'package:nl_manager/tasks/helpers.dart';
+import 'package:nl_manager/tasks/permission_service.dart';
 import 'package:nl_manager/tasks/session_state.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
 class MenuPage extends StatefulWidget {
@@ -10,6 +13,18 @@ class MenuPage extends StatefulWidget {
 
   @override
   State<MenuPage> createState() => _MenuPageState();
+}
+
+void checkMyPermissions(BuildContext context) async {
+  bool status = await MyPermissions().checkPermissions();
+  if (status) {
+    print("$status permission granted");
+    Navigator.pushNamed(context, '/modules');
+  } else {
+    print("$status permission denied");
+
+    // MyHelper().showPermissionDialog(context);
+  }
 }
 
 class _MenuPageState extends State<MenuPage> {
@@ -38,7 +53,7 @@ class _MenuPageState extends State<MenuPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Welcome to NL File Manager",
+                        "Welcome to NL Manager",
                         style: TextStyle(
                           color: Colors.grey.shade200,
                           fontSize: 20,
@@ -87,9 +102,7 @@ class _MenuPageState extends State<MenuPage> {
                           color: Color.fromARGB(255, 14, 182, 19),
                         ),
                         MySquareBtn(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/modules');
-                          },
+                          onPressed: () => checkMyPermissions(context),
                           icon: Icons.document_scanner,
                           label: "Scan",
                           color: Color.fromARGB(255, 221, 132, 0),

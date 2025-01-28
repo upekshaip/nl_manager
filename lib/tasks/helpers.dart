@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class MyHelper {
   Icon getIcons(String ext, String url) {
@@ -57,5 +58,38 @@ class MyHelper {
       }
     }
     return Icon(icon, color: color);
+  }
+
+  void showPermissionDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.grey.shade800,
+          title: Text('Permission Required', style: TextStyle(color: Colors.grey.shade200)),
+          content: Text('This app needs storage permission to continue.', style: TextStyle(color: Colors.grey.shade300)),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () async {
+                Navigator.of(context).pop();
+                var status = await Permission.storage.request();
+                if (status.isGranted) {
+                  Navigator.pushNamed(context, '/modules');
+                } else if (status.isPermanentlyDenied) {
+                  openAppSettings();
+                }
+              },
+              child: Text('Allow'),
+            ),
+          ],
+        );
+      },
+    );
   }
 }

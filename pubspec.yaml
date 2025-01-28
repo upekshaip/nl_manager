@@ -40,10 +40,12 @@ dependencies:
   provider: ^6.1.2
   flutter_svg: ^2.0.10+1
   url_launcher: ^6.3.1
+  permission_handler: ^11.3.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.14.3
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -54,7 +56,12 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/logo.png"
+  adaptive_icon_foreground: "assets/foreground.png"
+  adaptive_icon_background: "#ffffff"
 # The following section is specific to Flutter packages.
 flutter:
   # The following line ensures that the Material Icons font is
