@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:nl_manager/components/logout_btn.dart';
-import 'package:nl_manager/components/my_square_btn.dart';
-import 'package:nl_manager/components/todos/my_todo_list.dart';
-import 'package:nl_manager/tasks/helpers.dart';
-import 'package:nl_manager/tasks/permission_service.dart';
-import 'package:nl_manager/tasks/session_state.dart';
+import 'package:nlmanager/components/logout_btn.dart';
+import 'package:nlmanager/components/my_square_btn.dart';
+import 'package:nlmanager/components/todos/my_todo_list.dart';
+import 'package:nlmanager/tasks/helpers.dart';
+import 'package:nlmanager/tasks/permission_service.dart';
+import 'package:nlmanager/tasks/session_state.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
@@ -21,9 +21,7 @@ void checkMyPermissions(BuildContext context) async {
     print("$status permission granted");
     Navigator.pushNamed(context, '/modules');
   } else {
-    print("$status permission denied");
-
-    // MyHelper().showPermissionDialog(context);
+    MyHelper().showPermissionDialog(context);
   }
 }
 

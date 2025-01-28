@@ -17,19 +17,18 @@ class MyTextFeild extends StatelessWidget {
           enabled: isEnabled,
           controller: controller,
           obscureText: obscureText,
-          style: const TextStyle(
-            color: Colors.white, // Changes the text color when typing
-          ),
+          style: Theme.of(context).textTheme.labelLarge, // Changes the text color when typing
+
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey.shade600),
+              borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary),
               borderRadius: BorderRadius.all(Radius.circular(10)),
             ),
-            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey.shade200), borderRadius: BorderRadius.all(Radius.circular(10))),
-            fillColor: Colors.black,
+            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).colorScheme.tertiary), borderRadius: BorderRadius.all(Radius.circular(10))),
+            fillColor: Theme.of(context).colorScheme.surface,
             filled: true,
             hintText: hintText,
-            hintStyle: TextStyle(color: Colors.grey.shade600),
+            hintStyle: Theme.of(context).textTheme.labelSmall,
             contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
           )),
     );

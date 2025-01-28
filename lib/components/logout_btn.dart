@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nl_manager/tasks/session_state.dart';
+import 'package:nlmanager/tasks/session_state.dart';
 import 'package:provider/provider.dart';
 
 class LogoutBtn extends StatelessWidget {

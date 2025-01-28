@@ -12,7 +12,7 @@ class MyButton extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 10),
         margin: EdgeInsets.symmetric(horizontal: 25),
-        decoration: BoxDecoration(color: Colors.grey.shade800, borderRadius: BorderRadius.circular(30), border: Border.all(color: Colors.grey.shade800)),
+        decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary, borderRadius: BorderRadius.circular(30), border: Border.all(color: Theme.of(context).colorScheme.primary)),
         child: const Center(
           child: Text(
             "LogIn",

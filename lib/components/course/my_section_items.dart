@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nl_manager/tasks/helpers.dart';
+import 'package:nlmanager/tasks/helpers.dart';
 
 class MySectionItem extends StatelessWidget {
   final dynamic sectionContents;

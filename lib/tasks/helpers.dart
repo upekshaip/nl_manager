@@ -81,7 +81,7 @@ class MyHelper {
                 var status = await Permission.storage.request();
                 if (status.isGranted) {
                   Navigator.pushNamed(context, '/modules');
-                } else if (status.isPermanentlyDenied) {
+                } else if (status.isPermanentlyDenied || status.isDenied) {
                   openAppSettings();
                 }
               },

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nl_manager/components/my_loading.dart';
-import 'package:nl_manager/tasks/course_task.dart';
-import 'package:nl_manager/tasks/helpers.dart';
-import 'package:nl_manager/tasks/session_state.dart';
+import 'package:nlmanager/components/my_loading.dart';
+import 'package:nlmanager/tasks/course_task.dart';
+import 'package:nlmanager/tasks/helpers.dart';
+import 'package:nlmanager/tasks/session_state.dart';
 import 'package:provider/provider.dart';
 
 class TodosList extends StatefulWidget {

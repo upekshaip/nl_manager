@@ -1,4 +1,4 @@
-# nl_manager
+# nlmanager
 
 A new Flutter project.
 

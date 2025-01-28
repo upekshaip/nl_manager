@@ -1,6 +1,6 @@
 {
-    "name": "nl_manager",
-    "short_name": "nl_manager",
+    "name": "nlmanager",
+    "short_name": "nlmanager",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

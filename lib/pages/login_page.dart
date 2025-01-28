@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:nl_manager/components/my_button.dart';
-import 'package:nl_manager/components/my_loading.dart';
-import 'package:nl_manager/components/my_text_feild.dart';
-import 'package:nl_manager/pages/menu_page.dart';
-import 'package:nl_manager/tasks/course_task.dart';
-import 'package:nl_manager/tasks/login_task.dart';
-import 'package:nl_manager/tasks/session_state.dart';
+import 'package:nlmanager/components/my_button.dart';
+import 'package:nlmanager/components/my_loading.dart';
+import 'package:nlmanager/components/my_text_feild.dart';
+import 'package:nlmanager/pages/menu_page.dart';
+import 'package:nlmanager/tasks/course_task.dart';
+import 'package:nlmanager/tasks/login_task.dart';
+import 'package:nlmanager/tasks/session_state.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -72,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         body: SafeArea(
             child: Center(
           child: Column(
@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
               // welcome message
               Text(
                 "Welcome to NL File Manager",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.grey.shade500),
+                style: Theme.of(context).textTheme.headlineSmall,
               ),
               const SizedBox(
                 height: 25,
@@ -128,17 +128,14 @@ class _LoginPageState extends State<LoginPage> {
                   style: const TextStyle(fontSize: 14, color: Colors.red),
                 ),
 
-              if (isLoading)
-                const MyLoading(
-                  message: "Loading...",
-                ),
+              if (isLoading) const MyLoading(),
               // developer info
               const SizedBox(
                 height: 8,
               ),
               Text(
                 "Developed by upekshaip",
-                style: TextStyle(fontSize: 14, color: Colors.grey.shade500),
+                style: Theme.of(context).textTheme.bodyMedium,
               )
             ],
           ),

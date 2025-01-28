@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nl_manager/components/course/my_section_items.dart';
+import 'package:nlmanager/components/course/my_section_items.dart';
 
 class MyCourseListItem extends StatelessWidget {
   final dynamic sections;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nl_manager/tasks/course_task.dart';
-import 'package:nl_manager/tasks/session_state.dart';
+import 'package:nlmanager/tasks/course_task.dart';
+import 'package:nlmanager/tasks/session_state.dart';
 import 'package:provider/provider.dart';
 
 import '../components/course/my_list.dart';

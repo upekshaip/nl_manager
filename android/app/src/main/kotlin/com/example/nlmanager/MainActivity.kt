@@ -1,4 +1,4 @@
-package com.example.nl_manager
+package com.example.nlmanager
 
 import io.flutter.embedding.android.FlutterActivity
 
