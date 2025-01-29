@@ -155,11 +155,11 @@ class Course {
               var fileName = files.querySelector("a")!.querySelector(".instancename")!.text;
               String fileType = "not sure";
               if (files.querySelector("a .instancename span") != null) {
-                fileType = files.querySelector("a .instancename span")!.text;
+                fileType = files.querySelector("a .instancename span")!.text.trim();
               }
               if (fileType == "not sure" && files.querySelector("a .instancename")!.text.isNotEmpty) {
                 // print("flag - quote file type inside data");
-                fileType = files.querySelector("a .instancename")!.text;
+                fileType = files.querySelector("a .instancename")!.text.trim();
               }
               var fileUrl = files.querySelector("a")!.attributes["href"];
               var fileImage = files.querySelector("a img")?.attributes["src"];
@@ -167,12 +167,13 @@ class Course {
 
               // print("$fileType - $ext");
               Map<String, String?> fileData;
+              String myPath = '${course["fullname"]}/$topic/${rmKeys(fileName)}.$ext';
               if (fileType == "File") {
-                fileData = {"file_name": rmKeys(fileName), "file_type": fileType, "url": fileUrl, "image": fileImage, "ext": ext};
+                fileData = {"file_name": rmKeys(fileName), "file_type": fileType, "url": fileUrl, "image": fileImage, "ext": ext, "path": myPath};
               } else if (fileType == "Folder") {
                 var folderId = fileUrl!.split("=")[1];
                 var folderUrl = "https://nlearn.nsbm.ac.lk/mod/folder/download_folder.php?id=$folderId&sesskey=${tokens['sesskey']}";
-                fileData = {"file_name": rmKeys(fileName), "file_type": fileType, "url": folderUrl, "image": fileImage, "ext": ext};
+                fileData = {"file_name": rmKeys(fileName), "file_type": fileType, "url": folderUrl, "image": fileImage, "ext": ext, "path": myPath};
               } else {
                 fileData = {"file_name": fileName, "file_type": fileType, "url": fileUrl, "image": fileImage, "ext": ext};
               }
@@ -188,5 +189,17 @@ class Course {
       // print(e);
       return null;
     }
+  }
+
+  Future<Map<String, dynamic>> getAllCourses() async {
+    Map<String, dynamic> courseData = await getCourses();
+    if (courseData.containsKey("error")) {
+      return {"error": courseData["error"]};
+    }
+    var finalData = await getAllCourseInfo(courseData["courses"]);
+    if (finalData == null) {
+      return {"error": "Failed to get course content"};
+    }
+    return {"data": finalData};
   }
 }

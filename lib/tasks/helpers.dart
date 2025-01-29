@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:nlmanager/tasks/permission_service.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class MyHelper {
@@ -91,5 +93,24 @@ class MyHelper {
         );
       },
     );
+  }
+
+  Future<List> onlyGetMissingFiles(List courseData) async {
+    var temp = [];
+    List<FileSystemEntity> existingFiles = await MyPermissions().getFiles();
+    for (var course in courseData) {
+      for (var section in course["contents"]) {
+        for (var file in section["section_content"]) {
+          if (file.containsKey("file_type") && (file["file_type"] == "File" || file["file_type"] == "Folder")) {
+            // temp.add(file["file_type"]);
+            bool fileExists = existingFiles.any((item) => item.path != '/storage/emulated/0/NLManager/${file["path"]}');
+            if (!fileExists) {
+              temp.add(file);
+            }
+          }
+        }
+      }
+    }
+    return temp;
   }
 }

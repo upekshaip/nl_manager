@@ -1,47 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:nlmanager/components/my_loading.dart';
-import 'package:nlmanager/tasks/course_task.dart';
+import 'package:nlmanager/tasks/course_state.dart';
 import 'package:nlmanager/tasks/helpers.dart';
 import 'package:nlmanager/tasks/session_state.dart';
 import 'package:provider/provider.dart';
 
-class TodosList extends StatefulWidget {
+class TodosList extends StatelessWidget {
   const TodosList({super.key});
 
   @override
-  State<TodosList> createState() => _TodosListState();
-}
-
-class _TodosListState extends State<TodosList> {
-  Map<String, dynamic> todos = {};
-  bool isLoading = false;
-  String error = "";
-
-  void doThis(SessionStateProvider session) async {
-    setState(() {
-      error = "";
-      isLoading = true;
-    });
-    final course = Course(tokens: session.tokens.cast<String, String?>(), session: session.getMySession(), reverseDays: 15);
-    var todos = await course.getTodos();
-    if (todos.containsKey("error")) {
-      setState(() {
-        error = todos["error"];
-        isLoading = false;
-      });
-      return;
-    }
-    setState(() {
-      isLoading = false;
-      error = "";
-      session.setTodos(todos["todos"]);
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Consumer<SessionStateProvider>(
-      builder: (context, mySession, child) => Container(
+    return Consumer2<SessionStateProvider, CourseStateProvider>(
+      builder: (context, mySession, myCourse, child) => Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.grey.shade900,
@@ -60,28 +30,28 @@ class _TodosListState extends State<TodosList> {
                   icon: const Icon(Icons.refresh),
                   tooltip: 'Refresh',
                   onPressed: () async {
-                    doThis(mySession);
+                    myCourse.refreshTodos(mySession);
                   },
                   color: Colors.white,
                 ),
               ],
             ),
-            if (isLoading)
+            if (myCourse.isTodosLoading)
               const Column(
                 children: [MyLoading(), Padding(padding: EdgeInsets.only(top: 20))],
               ),
-            if (error.isNotEmpty)
+            if (myCourse.todosError.isNotEmpty)
               Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: Text(
-                  error,
+                  myCourse.todosError,
                   style: const TextStyle(color: Colors.red),
                 ),
               ),
-            if (!isLoading && mySession.todos.isNotEmpty)
+            if (!myCourse.isTodosLoading && myCourse.todos.isNotEmpty)
               Column(
                 children: [
-                  for (var todo in mySession.todos)
+                  for (var todo in myCourse.todos)
                     ListTile(
                       title: Text(todo["others"]["name"], style: const TextStyle(color: Colors.white)),
                       subtitle: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [

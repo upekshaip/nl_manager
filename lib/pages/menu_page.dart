@@ -2,34 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:nlmanager/components/logout_btn.dart';
 import 'package:nlmanager/components/my_square_btn.dart';
 import 'package:nlmanager/components/todos/my_todo_list.dart';
+import 'package:nlmanager/tasks/course_state.dart';
 import 'package:nlmanager/tasks/helpers.dart';
 import 'package:nlmanager/tasks/permission_service.dart';
 import 'package:nlmanager/tasks/session_state.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
-class MenuPage extends StatefulWidget {
+class MenuPage extends StatelessWidget {
   const MenuPage({super.key});
 
   @override
-  State<MenuPage> createState() => _MenuPageState();
-}
-
-void checkMyPermissions(BuildContext context) async {
-  bool status = await MyPermissions().checkPermissions();
-  if (status) {
-    print("$status permission granted");
-    Navigator.pushNamed(context, '/modules');
-  } else {
-    MyHelper().showPermissionDialog(context);
-  }
-}
-
-class _MenuPageState extends State<MenuPage> {
-  @override
   Widget build(BuildContext context) {
-    return Consumer<SessionStateProvider>(
-      builder: (context, mySession, child) => Scaffold(
+    return Consumer2<SessionStateProvider, CourseStateProvider>(
+      builder: (context, mySession, myCourse, child) => Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
           title: const Text('Menu', style: TextStyle(color: Colors.white)),
@@ -100,7 +85,15 @@ class _MenuPageState extends State<MenuPage> {
                           color: Color.fromARGB(255, 14, 182, 19),
                         ),
                         MySquareBtn(
-                          onPressed: () => checkMyPermissions(context),
+                          onPressed: () async {
+                            bool status = await MyPermissions().checkPermissions();
+                            if (status) {
+                              // print("$status permission granted");
+                              Navigator.pushNamed(context, '/downloader');
+                            } else {
+                              MyHelper().showPermissionDialog(context);
+                            }
+                          },
                           icon: Icons.document_scanner,
                           label: "Scan",
                           color: Color.fromARGB(255, 221, 132, 0),
