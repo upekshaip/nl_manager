@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nlmanager/tasks/course_task.dart';
+import 'package:nlmanager/tasks/helpers.dart';
 import 'package:nlmanager/tasks/session_state.dart';
 
 class CourseStateProvider extends ChangeNotifier {
@@ -28,7 +29,7 @@ class CourseStateProvider extends ChangeNotifier {
     setTodos(todos["todos"]);
   }
 
-  void refresh(SessionStateProvider mySession) async {
+  Future refresh(SessionStateProvider mySession) async {
     error = "";
     isLoading = true;
     notifyListeners();

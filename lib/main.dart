@@ -3,6 +3,7 @@ import 'package:nlmanager/pages/course_page.dart';
 import 'package:nlmanager/pages/downloader_page.dart';
 import 'package:nlmanager/pages/login_page.dart';
 import 'package:nlmanager/pages/menu_page.dart';
+import 'package:nlmanager/pages/settings_page.dart';
 import 'package:nlmanager/tasks/course_state.dart';
 import 'package:nlmanager/tasks/downloader_state.dart';
 import 'package:nlmanager/tasks/session_state.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
           '/menu': (context) => const MenuPage(),
           '/modules': (context) => const CoursePage(),
           '/downloader': (context) => const DownloaderPage(),
+          '/settings': (context) => const SettingsPage(),
         },
       ),
     );

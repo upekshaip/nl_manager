@@ -15,6 +15,11 @@ class MyLoading extends StatelessWidget {
           if (message != null) ...[
             const SizedBox(height: 8), // Space between spinner and message
           ],
+          if (message != null) ...[
+            Text(
+              message!,
+            ), // Loading message
+          ],
         ],
       ),
     );

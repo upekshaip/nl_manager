@@ -4,7 +4,11 @@ import 'package:nlmanager/tasks/permission_service.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class MyHelper {
-  Icon getIcons(String ext, String url) {
+  Icon getIcons(String ext, String url, {String? state = ""}) {
+    if (state == "complete") {
+      return Icon(Icons.check, color: Colors.green.shade500);
+    }
+
     IconData icon = Icons.question_mark;
     Color color = Colors.grey.shade300;
 
@@ -103,8 +107,9 @@ class MyHelper {
         for (var file in section["section_content"]) {
           if (file.containsKey("file_type") && (file["file_type"] == "File" || file["file_type"] == "Folder")) {
             // temp.add(file["file_type"]);
-            bool fileExists = existingFiles.any((item) => item.path != '/storage/emulated/0/NLManager/${file["path"]}');
+            bool fileExists = existingFiles.any((item) => item.path == '/storage/emulated/0/NLManager/${file["path"]}');
             if (!fileExists) {
+              file["d_state"] = "pending";
               temp.add(file);
             }
           }
@@ -112,5 +117,13 @@ class MyHelper {
       }
     }
     return temp;
+  }
+
+  String formatBytes(int bytes, [int decimals = 2]) {
+    if (bytes <= 0) return "0 B";
+    const List<String> suffixes = ["B", "KB", "MB", "GB", "TB", "PB"];
+    int i = (bytes > 0) ? (bytes ~/ 1024).toString().length ~/ 3 : 0;
+    double size = bytes / (1 << (i * 10));
+    return "${size.toStringAsFixed(decimals)} ${suffixes[i]}";
   }
 }

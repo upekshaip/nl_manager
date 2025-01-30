@@ -100,7 +100,7 @@ class MenuPage extends StatelessWidget {
                         ),
                         MySquareBtn(
                           onPressed: () {
-                            Navigator.pushNamed(context, '/modules');
+                            Navigator.pushNamed(context, '/settings');
                           },
                           icon: Icons.settings,
                           label: "Settings",

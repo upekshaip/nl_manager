@@ -88,12 +88,12 @@ class Course {
   String rmKeys(String str) {
     var keys = ["\\", "/", ":", "*", "?", "\"", "^", ">", "<", "|", "\n", "\t"];
     if (str.contains("\\") || str.contains("/")) {
-      str.replaceAll("/", "or");
-      str.replaceAll("\\", "or");
+      str = str.replaceAll("/", "or");
+      str = str.replaceAll("\\", "or");
     }
     for (var key in keys) {
       if (str.contains(key)) {
-        str.replaceAll(key, "").trim();
+        str = str.replaceAll(key, "").trim();
       }
     }
     if (str.length > 250) {

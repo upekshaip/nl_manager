@@ -55,9 +55,10 @@ class TodosList extends StatelessWidget {
                     ListTile(
                       title: Text(todo["others"]["name"], style: const TextStyle(color: Colors.white)),
                       subtitle: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-                        Text(todo["course"]["coursecategory"], style: const TextStyle(color: Colors.grey, fontSize: 11)),
+                        Text(todo["deadline"], style: const TextStyle(color: Colors.white, fontSize: 12)),
                         const SizedBox(height: 5),
-                        Text(todo["course"]["fullname"], style: const TextStyle(color: Colors.grey, fontSize: 12)),
+                        Text(todo["course"]["fullname"], style: const TextStyle(color: Colors.grey, fontSize: 11)),
+                        Text(todo["course"]["coursecategory"], style: const TextStyle(color: Colors.grey, fontSize: 11)),
                       ]),
                       trailing: MyHelper().getIcons("unknown", todo["others"]["icon"]["component"]),
                     ),
