@@ -78,8 +78,13 @@ class MenuPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         MySquareBtn(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/modules');
+                          onPressed: () async {
+                            bool status = await MyPermissions().checkPermissions();
+                            if (status) {
+                              Navigator.pushNamed(context, '/modules');
+                            } else {
+                              MyHelper().showPermissionDialog(context);
+                            }
                           },
                           icon: Icons.book,
                           label: "Modules",
@@ -89,7 +94,6 @@ class MenuPage extends StatelessWidget {
                           onPressed: () async {
                             bool status = await MyPermissions().checkPermissions();
                             if (status) {
-                              // print("$status permission granted");
                               Navigator.pushNamed(context, '/downloader');
                             } else {
                               MyHelper().showPermissionDialog(context);
