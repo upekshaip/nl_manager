@@ -1,8 +1,8 @@
-// import 'package:html/parser.dart' show parse;
 import 'dart:convert';
 import 'package:http_session/http_session.dart';
 import 'package:html/dom.dart';
 import 'package:html/parser.dart' show parse;
+import 'package:nlmanager/tasks/helpers.dart';
 
 class Course {
   final Map<String, String?> tokens;
@@ -130,12 +130,18 @@ class Course {
 
   Future<List<dynamic>?> getAllCourseInfo(List<dynamic> data) async {
     // inside the course (TODO: get all course content at onece and then filter)
+    int count = 0;
     try {
       for (var course in data) {
         var couseRes = await session.get(Uri.parse(course["viewurl"]));
         if (couseRes.statusCode != 200) {
           return null;
         }
+        // notification
+        count += 1;
+        double progress = (data.length == 0) ? 0 : count / data.length;
+        await MyHelper().showProgressNotification(title: "🔍 Scanning NLearn Files...", progress: progress * 100);
+
         var doc = parse(couseRes.body);
         List<Element> courseContent = doc.querySelectorAll('.content');
         if (courseContent.isNotEmpty) {
@@ -184,6 +190,7 @@ class Course {
         }
         course["contents"] = myCourse;
       }
+      await MyHelper().showNotification(title: "🔍 Scan Completed", body: "Successfully scanned all courses. ✅");
       return data;
     } catch (e) {
       // print(e);

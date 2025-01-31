@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:nlmanager/tasks/permission_service.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -73,7 +74,7 @@ class MyHelper {
         return AlertDialog(
           backgroundColor: Colors.grey.shade800,
           title: Text('Permission Required', style: TextStyle(color: Colors.grey.shade200)),
-          content: Text('This app needs storage permission to continue.', style: TextStyle(color: Colors.grey.shade300)),
+          content: Text('This app needs storage and notification permission to continue.', style: TextStyle(color: Colors.grey.shade300)),
           actions: [
             TextButton(
               onPressed: () {
@@ -125,5 +126,32 @@ class MyHelper {
     int i = (bytes > 0) ? (bytes ~/ 1024).toString().length ~/ 3 : 0;
     double size = bytes / (1 << (i * 10));
     return "${size.toStringAsFixed(decimals)} ${suffixes[i]}";
+  }
+
+  Future<void> showProgressNotification({required String title, required double progress}) async {
+    await AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: 1,
+        channelKey: 'NLManager',
+        title: title,
+        body: '⚡️ Progress: ${progress.toStringAsFixed(2)} %',
+        notificationLayout: NotificationLayout.ProgressBar,
+        progress: progress, // Updates the progress bar dynamically
+        locked: true, // Prevents user from swiping the notification away
+      ),
+    );
+  }
+
+  Future<void> showNotification({required String title, required String body}) async {
+    await AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: 1,
+        channelKey: 'NLManager',
+        title: title,
+        body: body,
+        notificationLayout: NotificationLayout.Default,
+        locked: false, // Allow user to dismiss the notification
+      ),
+    );
   }
 }

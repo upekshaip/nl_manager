@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:nlmanager/tasks/course_state.dart';
 import 'package:nlmanager/tasks/helpers.dart';
@@ -84,8 +83,10 @@ class DownloadStateProvider extends ChangeNotifier {
               await newFile.writeAsBytes(bytes);
               file["d_status"] = "complete";
               downloaded.add(file);
-              totalProgress = (downloaded.length / needsToDownload.length);
-              statusMessage = "Download complete.";
+
+              totalProgress = needsToDownload.isEmpty ? 1 : (downloaded.length / needsToDownload.length);
+
+              statusMessage = "Download complete. ✅";
               notifyListeners();
             },
             onError: (e) {
@@ -95,6 +96,7 @@ class DownloadStateProvider extends ChangeNotifier {
             },
             cancelOnError: true,
           );
+          await MyHelper().showProgressNotification(title: "📥 Downloading NLearn Files...", progress: totalProgress * 100);
         } else {
           downloadingFileSize = 0;
           problems = true;
@@ -107,6 +109,8 @@ class DownloadStateProvider extends ChangeNotifier {
         print(e);
       }
     }
+
+    await MyHelper().showNotification(title: "Download Complete ✅", body: "Your files have been downloaded successfully! Make sure to refresh again to see the latest updates.");
     // after downloading code...
     resetValues();
     notifyListeners();
