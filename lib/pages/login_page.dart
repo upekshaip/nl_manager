@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nlmanager/components/my_button.dart';
 import 'package:nlmanager/components/my_loading.dart';
 import 'package:nlmanager/components/my_text_feild.dart';
+import 'package:nlmanager/components/primary_btn.dart';
 import 'package:nlmanager/pages/menu_page.dart';
 import 'package:nlmanager/tasks/course_state.dart';
 import 'package:nlmanager/tasks/session_state.dart';
@@ -76,13 +76,17 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 // login button
                 if (mySession.isLoginLoading == false)
-                  MyButton(
-                    onTap: () async {
-                      bool islogin = await mySession.login(myCourse, usernameController.text, passwordController.text);
-                      if (islogin) {
-                        await userLogIn();
-                      }
-                    },
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: PrimaryBtn(
+                      text: "Login",
+                      onTap: () async {
+                        bool islogin = await mySession.login(myCourse, usernameController.text, passwordController.text);
+                        if (islogin) {
+                          await userLogIn();
+                        }
+                      },
+                    ),
                   ),
                 const SizedBox(
                   height: 20,

@@ -6,6 +6,7 @@ import 'package:nlmanager/tasks/course_state.dart';
 import 'package:nlmanager/tasks/helpers.dart';
 import 'package:nlmanager/tasks/permission_service.dart';
 import 'package:nlmanager/tasks/session_state.dart';
+import 'package:nlmanager/tasks/settings_state.dart';
 import 'package:provider/provider.dart';
 
 class MenuPage extends StatelessWidget {
@@ -13,8 +14,8 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer2<SessionStateProvider, CourseStateProvider>(
-      builder: (context, mySession, myCourse, child) => Scaffold(
+    return Consumer3<SessionStateProvider, CourseStateProvider, SettingsStateProvider>(
+      builder: (context, mySession, myCourse, mySettings, child) => Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
           title: const Text('Menu', style: TextStyle(color: Colors.white)),
@@ -100,6 +101,7 @@ class MenuPage extends StatelessWidget {
                         ),
                         MySquareBtn(
                           onPressed: () {
+                            mySettings.loadSettings();
                             Navigator.pushNamed(context, '/settings');
                           },
                           icon: Icons.settings,

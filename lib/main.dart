@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:nlmanager/pages/course_page.dart';
 import 'package:nlmanager/pages/downloader_page.dart';
 import 'package:nlmanager/pages/login_page.dart';
@@ -7,11 +8,16 @@ import 'package:nlmanager/pages/settings_page.dart';
 import 'package:nlmanager/tasks/course_state.dart';
 import 'package:nlmanager/tasks/downloader_state.dart';
 import 'package:nlmanager/tasks/session_state.dart';
+import 'package:nlmanager/tasks/settings_state.dart';
 import 'package:nlmanager/themes/dark_theme.dart';
-import 'package:nlmanager/themes/light_theme.dart';
+// import 'package:nlmanager/themes/light_theme.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  // test inside states
+  await Hive.initFlutter(); // init
+  await Hive.openBox('nlmanager'); // Open a Hive box
+
   runApp(const MyApp());
 }
 
@@ -25,12 +31,12 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => SessionStateProvider()),
         ChangeNotifierProvider(create: (context) => DownloadStateProvider()),
         ChangeNotifierProvider(create: (context) => CourseStateProvider()),
+        ChangeNotifierProvider(create: (context) => SettingsStateProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'NL File Manager',
         theme: darkTheme,
-        darkTheme: darkTheme,
         home: const LoginPage(),
         routes: {
           '/login': (context) => const LoginPage(),
