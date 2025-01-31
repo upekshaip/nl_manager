@@ -66,7 +66,6 @@ class SettingsStateProvider extends ChangeNotifier {
     error = "";
     notifyListeners();
     var box = Hive.box('nlmanager');
-    box.put("auto_login", autoLogin);
     // off
     if (autoLogin == false) {
       Map<String, dynamic> userData = {"username": "", "password": "", "schedule": 6};
@@ -82,6 +81,7 @@ class SettingsStateProvider extends ChangeNotifier {
       Map<String, dynamic> userData = {"username": passwordController.text, "password": passwordController.text, "schedule": schedule};
       box.put("user_data", userData);
     }
+    box.put("auto_login", autoLogin);
     print("saved");
     return "Settings Saved!";
   }
