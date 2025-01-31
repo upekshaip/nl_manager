@@ -56,15 +56,15 @@ class DownloaderPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
-                    "Some files did not download properly. After download completed refresh again to see what's missing..",
+                    " Some files did not download properly. After download completed refresh again to see what's missing..",
                     style: TextStyle(color: Colors.white, fontSize: 14),
                   ),
                 ),
-              if (myCourse.isLoading) MyLoading(message: "Scanning NL Files"),
+              if (myCourse.isLoading) MyLoading(message: "🔍 Scanning NLearn Files..."),
               if (!myCourse.isLoading && myDownloader.needsToDownload.isEmpty)
                 Column(children: [
                   Center(
-                    child: Text("Refresh to see missing files... "),
+                    child: Text("🔍 Refresh to see missing files"),
                   ),
                 ]),
               if (!myCourse.isLoading && myDownloader.needsToDownload.isNotEmpty)

@@ -136,9 +136,9 @@ class DownloadStateProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void cancelDownload() {
+  void clearData() {
     resetValues();
-    notifyListeners();
+    problems = false;
     // downloading code...
   }
 }

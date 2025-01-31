@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http_session/http_session.dart';
 import 'package:nlmanager/tasks/course_state.dart';
+import 'package:nlmanager/tasks/downloader_state.dart';
 import 'package:nlmanager/tasks/login_task.dart';
 
 class SessionStateProvider extends ChangeNotifier {
@@ -38,13 +39,14 @@ class SessionStateProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void logOut(CourseStateProvider myCourse) {
+  void logOut(CourseStateProvider myCourse, DownloadStateProvider myDownloader) {
     session.clear();
     session.close();
     tokens = {};
     username = "";
     password = "";
     myCourse.clearCourseData();
+    myDownloader.clearData();
     notifyListeners();
   }
 

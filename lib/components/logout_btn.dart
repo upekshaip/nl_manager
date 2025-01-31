@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nlmanager/tasks/course_state.dart';
+import 'package:nlmanager/tasks/downloader_state.dart';
 import 'package:nlmanager/tasks/session_state.dart';
 import 'package:provider/provider.dart';
 
@@ -8,10 +9,10 @@ class LogoutBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer2<SessionStateProvider, CourseStateProvider>(
-      builder: (context, mySession, myCourse, child) => GestureDetector(
+    return Consumer3<SessionStateProvider, CourseStateProvider, DownloadStateProvider>(
+      builder: (context, mySession, myCourse, myDownloader, child) => GestureDetector(
         onTap: () {
-          mySession.logOut(myCourse);
+          mySession.logOut(myCourse, myDownloader);
           Navigator.of(context).pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
           Navigator.pushNamed(context, '/login');
         },

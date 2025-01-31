@@ -95,8 +95,8 @@ class MenuPage extends StatelessWidget {
                               MyHelper().showPermissionDialog(context);
                             }
                           },
-                          icon: Icons.document_scanner,
-                          label: "Scan",
+                          icon: Icons.download,
+                          label: "Downloader",
                           color: Color.fromARGB(255, 221, 132, 0),
                         ),
                         MySquareBtn(

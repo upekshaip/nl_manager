@@ -134,7 +134,7 @@ class MyHelper {
         id: 1,
         channelKey: 'NLManager',
         title: title,
-        body: '⚡️ Progress: ${progress.toStringAsFixed(2)} %',
+        body: 'Progress: ${progress.toStringAsFixed(2)}% ⚡️',
         notificationLayout: NotificationLayout.ProgressBar,
         progress: progress, // Updates the progress bar dynamically
         locked: true, // Prevents user from swiping the notification away

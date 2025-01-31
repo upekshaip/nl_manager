@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nlmanager/components/my_loading.dart';
 import 'package:nlmanager/tasks/course_state.dart';
 import 'package:nlmanager/tasks/session_state.dart';
 import 'package:provider/provider.dart';
@@ -48,12 +49,15 @@ class CoursePage extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      if (myCourse.isLoading) const CircularProgressIndicator(),
-                      if (myCourse.courseData.isEmpty)
+                      if (myCourse.isLoading)
+                        const MyLoading(
+                          message: "🔍 Scanning...",
+                        ),
+                      if (myCourse.courseData.isEmpty && !myCourse.isLoading)
                         Column(
                           // optional
                           children: [
-                            for (var entry in mySession.tokens.entries) Text('${entry.key}: ${entry.value}', style: TextStyle(color: Colors.grey.shade400)),
+                            Text('Refresh to scan courses 🔍'),
                           ],
                         ),
                       if (myCourse.courseData.isNotEmpty && !myCourse.isLoading) MyCourseList(courses: myCourse.courseData),
