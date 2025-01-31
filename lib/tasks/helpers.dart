@@ -149,7 +149,7 @@ class MyHelper {
         channelKey: 'NLManager',
         title: title,
         body: body,
-        notificationLayout: NotificationLayout.Default,
+        notificationLayout: NotificationLayout.BigText,
         locked: false, // Allow user to dismiss the notification
       ),
     );
