@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:nlmanager/tasks/permission_service.dart';
+import 'package:nlmanager/tasks/schedule_task.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:workmanager/workmanager.dart';
 
@@ -206,9 +207,11 @@ class MyHelper {
     Workmanager().cancelByUniqueName("NLManager_automate");
   }
 
+// workmanager callback (MAJOR)
   void callbackDispatcher() async {
-    Workmanager().executeTask((task, inputData) {
+    Workmanager().executeTask((task, inputData) async {
       MyHelper().scheduledNotification(title: "⏰ Scheduled Scan Started!", body: "Scanning for missing files and todos...");
+      await ScheduleTask().run();
       return Future.value(true);
     });
   }

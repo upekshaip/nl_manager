@@ -81,7 +81,7 @@ class SettingsStateProvider extends ChangeNotifier {
         notifyListeners();
         return error;
       }
-      Map<String, dynamic> userData = {"username": passwordController.text, "password": passwordController.text, "schedule": schedule};
+      Map<String, dynamic> userData = {"username": usernameController.text, "password": passwordController.text, "schedule": schedule};
       box.put("user_data", userData);
       MyHelper().startWorkManager(getSchedule());
     }
