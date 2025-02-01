@@ -21,7 +21,7 @@ void main() async {
   // WM
   Workmanager().initialize(
     callbackDispatcher,
-    isInDebugMode: true,
+    isInDebugMode: false,
   );
 
   // test inside states
