@@ -65,10 +65,10 @@ class SettingsPage extends StatelessWidget {
                     onChanged: (int? newValue) {
                       mySettings.setSchedule(newValue!);
                     },
-                    items: [1, 3, 6, 12, 24].map((int value) {
+                    items: [15, 30, 1, 3, 6, 12, 24].map((int value) {
                       return DropdownMenuItem<int>(
                         value: value,
-                        child: Text('$value hours'),
+                        child: Text('$value ${(value == 15 || value == 30) ? "minutes" : "hours"}'),
                       );
                     }).toList(),
                   ),

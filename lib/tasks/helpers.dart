@@ -3,6 +3,7 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:nlmanager/tasks/permission_service.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:workmanager/workmanager.dart';
 
 class MyHelper {
   Icon getIcons(String ext, String url, {String? state = ""}) {
@@ -128,6 +129,7 @@ class MyHelper {
     return "${size.toStringAsFixed(decimals)} ${suffixes[i]}";
   }
 
+// normal notifications
   Future<void> showProgressNotification({required String title, required double progress}) async {
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
@@ -153,5 +155,61 @@ class MyHelper {
         locked: false, // Allow user to dismiss the notification
       ),
     );
+  }
+
+  // scheduled notifications
+  Future<void> scheduledProgressNotification({required String title, required double progress}) async {
+    await AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: 1,
+        channelKey: 'NLManager_auto',
+        title: title,
+        body: 'Progress: ${progress.toStringAsFixed(2)}% ⚡️',
+        notificationLayout: NotificationLayout.ProgressBar,
+        progress: progress, // Updates the progress bar dynamically
+        locked: true, // Prevents user from swiping the notification away
+      ),
+    );
+  }
+
+  Future<void> scheduledNotification({required String title, required String body}) async {
+    await AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: 1,
+        channelKey: 'NLManager_auto',
+        title: title,
+        body: body,
+        notificationLayout: NotificationLayout.BigText,
+        locked: false, // Allow user to dismiss the notification
+      ),
+    );
+  }
+
+// workmanager
+
+  void startWorkManager(int hours) {
+    var duration = Duration(hours: 6);
+    if (hours == 15 || hours == 30) {
+      duration = Duration(minutes: hours);
+    } else {
+      duration = Duration(hours: hours);
+    }
+    cancelWorkManager();
+    Workmanager().registerPeriodicTask(
+      "NLManager_automate",
+      "send_notifications",
+      frequency: duration,
+    );
+  }
+
+  void cancelWorkManager() {
+    Workmanager().cancelByUniqueName("NLManager_automate");
+  }
+
+  void callbackDispatcher() async {
+    Workmanager().executeTask((task, inputData) {
+      MyHelper().scheduledNotification(title: "⏰ Scheduled Scan Started!", body: "Scanning for missing files and todos...");
+      return Future.value(true);
+    });
   }
 }

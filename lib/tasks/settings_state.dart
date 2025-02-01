@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:nlmanager/tasks/helpers.dart';
 
 class SettingsStateProvider extends ChangeNotifier {
   late bool autoLogin = false; //off
@@ -47,11 +48,12 @@ class SettingsStateProvider extends ChangeNotifier {
     }
   }
 
-  bool getAutoLogin() {
+  dynamic getAutoLogin() {
     var box = Hive.box('nlmanager');
     bool? myVal = box.get("auto_login");
     if (myVal != null) {
-      return myVal;
+      Map<String, dynamic>? data = box.get("user_data");
+      return data;
     } else {
       return false;
     }
@@ -70,6 +72,7 @@ class SettingsStateProvider extends ChangeNotifier {
     if (autoLogin == false) {
       Map<String, dynamic> userData = {"username": "", "password": "", "schedule": 6};
       box.put("user_data", userData);
+      MyHelper().cancelWorkManager();
     }
     // on
     if (autoLogin == true) {
@@ -80,6 +83,7 @@ class SettingsStateProvider extends ChangeNotifier {
       }
       Map<String, dynamic> userData = {"username": passwordController.text, "password": passwordController.text, "schedule": schedule};
       box.put("user_data", userData);
+      MyHelper().startWorkManager(getSchedule());
     }
     box.put("auto_login", autoLogin);
     print("saved");

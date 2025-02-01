@@ -1,3 +1,5 @@
+import 'package:nlmanager/tasks/helpers.dart';
+import 'package:workmanager/workmanager.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -14,28 +16,51 @@ import 'package:nlmanager/themes/dark_theme.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // WM
+  Workmanager().initialize(
+    callbackDispatcher,
+    isInDebugMode: false,
+  );
+
   // test inside states
-  await Hive.initFlutter(); // init
-  await Hive.openBox('nlmanager'); // Open a Hive box
+  await Hive.initFlutter();
+  await Hive.openBox('nlmanager');
+
   // notifications
   AwesomeNotifications().initialize(
     null, // Use 'resource://drawable/app_icon' for a custom icon
     [
       NotificationChannel(
         channelKey: 'NLManager',
-        channelName: 'Progress Notifications',
-        channelDescription: 'Notification with a progress bar',
+        channelName: 'NLManager Notifications',
+        channelDescription: 'NLManager Notifications default channel',
         // icon: 'resource://drawable/res_app_icon',
         defaultColor: const Color(0xFF2979FF),
         ledColor: Colors.blue,
         importance: NotificationImportance.High,
         enableVibration: true,
-      )
+      ),
+      NotificationChannel(
+        channelKey: 'NLManager_auto',
+        channelName: 'Automate Notifications',
+        channelDescription: 'NLManager Automate notifications channel',
+        // icon: 'resource://drawable/res_app_icon',
+        defaultColor: const Color(0xFF2979FF),
+        ledColor: Colors.blue,
+        importance: NotificationImportance.High,
+        enableVibration: true,
+      ),
     ],
     debug: false,
   );
 
   runApp(const MyApp());
+}
+
+void callbackDispatcher() {
+  MyHelper().callbackDispatcher();
 }
 
 class MyApp extends StatelessWidget {
