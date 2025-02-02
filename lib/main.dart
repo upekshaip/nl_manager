@@ -1,3 +1,6 @@
+import 'package:nlmanager/pages/about_page.dart';
+import 'package:nlmanager/pages/instructions_page.dart';
+import 'package:nlmanager/pages/todos_page.dart';
 import 'package:nlmanager/tasks/helpers.dart';
 import 'package:workmanager/workmanager.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
@@ -85,8 +88,11 @@ class MyApp extends StatelessWidget {
           '/login': (context) => const LoginPage(),
           '/menu': (context) => const MenuPage(),
           '/modules': (context) => const CoursePage(),
+          '/todos': (context) => const TodosPage(),
           '/downloader': (context) => const DownloaderPage(),
           '/settings': (context) => const SettingsPage(),
+          '/instructions': (context) => const InstructionsPage(),
+          '/about': (context) => const AboutPage(),
         },
       ),
     );

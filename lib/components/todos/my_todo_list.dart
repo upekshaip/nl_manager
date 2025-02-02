@@ -22,9 +22,14 @@ class TodosList extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  "Todos",
-                  style: TextStyle(fontSize: 20, color: Colors.white),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/todos');
+                  },
+                  child: const Text(
+                    "My Todos",
+                    style: TextStyle(fontSize: 16, color: Colors.white, decoration: TextDecoration.underline),
+                  ),
                 ),
                 IconButton(
                   icon: const Icon(Icons.refresh),
