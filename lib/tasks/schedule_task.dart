@@ -19,9 +19,9 @@ class ScheduleTask {
     Map<dynamic, dynamic>? userData = box.get("user_data", defaultValue: defaultValue);
     String username = userData!["username"];
     String password = userData["password"];
-    print("=======================================================");
-    print("$username, $password");
-    print("=======================================================");
+    // print("=======================================================");
+    // print("$username, $password");
+    // print("=======================================================");
     Hive.close();
     if (username.isEmpty || password.isEmpty) {
       MyHelper().scheduledNotification(title: "❌ Auto login failed", body: "Username or password is empty 🔑");

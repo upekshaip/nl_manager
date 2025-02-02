@@ -104,9 +104,14 @@ class MenuPage extends StatelessWidget {
                           color: Color.fromARGB(255, 221, 132, 0),
                         ),
                         MySquareBtn(
-                          onPressed: () {
-                            mySettings.loadSettings();
-                            Navigator.pushNamed(context, '/settings');
+                          onPressed: () async {
+                            bool status = await MyPermissions().checkPermissions();
+                            if (status) {
+                              mySettings.loadSettings();
+                              Navigator.pushNamed(context, '/settings');
+                            } else {
+                              MyHelper().showPermissionDialog(context);
+                            }
                           },
                           icon: Icons.settings,
                           label: "Settings",

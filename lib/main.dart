@@ -59,6 +59,7 @@ void main() async {
   runApp(const MyApp());
 }
 
+@pragma('vm:entry-point')
 void callbackDispatcher() {
   MyHelper().callbackDispatcher();
 }
