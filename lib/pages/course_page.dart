@@ -25,7 +25,7 @@ class CoursePage extends StatelessWidget {
                       Navigator.pop(context);
                     },
                   ),
-                  backgroundColor: Colors.black,
+                  backgroundColor: Colors.blueGrey,
                   title: const Text(
                     'Modules',
                     style: TextStyle(color: Colors.white),
@@ -36,7 +36,7 @@ class CoursePage extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 16),
                       child: IconButton(
                         icon: const Icon(Icons.refresh),
-                        tooltip: 'Refresh',
+                        tooltip: 'Refresh 1',
                         onPressed: () {
                           myCourse.refresh(mySession);
                         },
@@ -60,7 +60,8 @@ class CoursePage extends StatelessWidget {
                             Text('Refresh to scan courses 🔍'),
                           ],
                         ),
-                      if (myCourse.courseData.isNotEmpty && !myCourse.isLoading) MyCourseList(courses: myCourse.courseData),
+                      if (myCourse.courseData.isNotEmpty && !myCourse.isLoading)
+                        MyCourseList(courses: myCourse.courseData),
                     ],
                   ),
                 ),
