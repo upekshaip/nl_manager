@@ -104,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 8,
                 ),
                 Text(
-                  "Developed by upekshaip",
+                  "Developed by Group 21",
                   style: Theme.of(context).textTheme.bodyMedium,
                 )
               ],
