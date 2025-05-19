@@ -32,7 +32,7 @@ class LogoutBtn extends StatelessWidget {
                 ),
                 Text(
                   "Logout",
-                  style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
+                  style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.semibold),
                 )
               ],
             ),
