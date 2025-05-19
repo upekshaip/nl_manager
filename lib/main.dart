@@ -173,13 +173,7 @@ class _MyHomePageState extends State<MyHomePage>
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        backgroundColor: Colors.white,
-        child: const Icon(Icons.add, color: Color(0xFF2212D8)),
-        elevation: 8,
-      ),
+      // Removed the floatingActionButton
     );
   }
 }
