@@ -13,10 +13,7 @@ class MySectionItem extends StatelessWidget {
       children: [
         for (var sectionContent in sectionContents)
           ListTile(
-            trailing: MyHelper()
-                .getIcons(sectionContent["ext"], sectionContent["url"]),
-            title: Text(sectionContent["file_name"],
-                style: TextStyle(fontSize: 12, color: Colors.grey.shade300)),
+
           ),
       ],
     );
