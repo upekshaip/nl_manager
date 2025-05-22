@@ -163,7 +163,7 @@ class Course {
         }
         // notification
         count += 1;
-        double progress = (data.length == 0) ? 0 : count / data.length;
+        double progress = (data.isEmpty) ? 0 : count / data.length;
         await MyHelper().showProgressNotification(
             title: "🔍 Scanning NLearn Files...", progress: progress * 100);
 
