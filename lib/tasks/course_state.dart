@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nlmanager/tasks/course_task.dart';
+import 'package:nlmanager/lib/tasks/course_task.dart';
 import 'package:nlmanager/tasks/session_state.dart';
 
 class CourseStateProvider extends ChangeNotifier {
