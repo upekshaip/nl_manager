@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nlmanager/components/course/my_list_item.dart';
 
 class MyCourseList extends StatefulWidget {
   final List courses;
