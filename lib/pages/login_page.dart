@@ -4,7 +4,6 @@ import 'package:nlmanager/components/my_text_feild.dart';
 import 'package:nlmanager/components/primary_btn.dart';
 import 'package:nlmanager/pages/menu_page.dart';
 import 'package:nlmanager/tasks/course_state.dart';
-import 'package:nlmanager/tasks/session_state.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -27,6 +26,20 @@ class _LoginPageState extends State<LoginPage> {
         (route) => false, // Remove all routes
       );
     }
+  }
+
+  void loadSettings() {
+    var box = Hive.box('nlmanager');
+
+    autoLogin = box.get("auto_login", defaultValue: false);
+    Map<String, dynamic>? defaultValue = {"username": "", "password": "", "schedule": 6};
+    Map<dynamic, dynamic>? userData = box.get("user_data", defaultValue: defaultValue);
+
+    usernameController.text = userData!["username"];
+    passwordController.text = userData["password"];
+    schedule = userData["schedule"];
+
+    notifyListeners();
   }
 
   @override
