@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nlmanager/tasks/helpers.dart';
 
 class MySectionItem extends StatelessWidget {
   final dynamic sectionContents;
@@ -11,10 +10,7 @@ class MySectionItem extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       children: [
-        for (var sectionContent in sectionContents)
-          ListTile(
-
-          ),
+        for (var sectionContent in sectionContents) ListTile(),
       ],
     );
   }

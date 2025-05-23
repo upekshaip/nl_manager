@@ -32,10 +32,15 @@ class _LoginPageState extends State<LoginPage> {
     var box = Hive.box('nlmanager');
 
     autoLogin = box.get("auto_login", defaultValue: false);
-    Map<String, dynamic>? defaultValue = {"username": "", "password": "", "schedule": 6};
-    Map<dynamic, dynamic>? userData = box.get("user_data", defaultValue: defaultValue);
+    Map<String, dynamic>? defaultValue = {
+      "username": "",
+      "password": "",
+      "schedule": 6
+    };
+    Map<dynamic, dynamic>? userData =
+        box.get("user_data", defaultValue: defaultValue);
 
-    usernameController.text = userData!["username"];
+    usernameController.text = userData["username"];
     passwordController.text = userData["password"];
     schedule = userData["schedule"];
 
@@ -94,7 +99,8 @@ class _LoginPageState extends State<LoginPage> {
                     child: PrimaryBtn(
                       text: "Login",
                       onTap: () async {
-                        bool islogin = await mySession.login(myCourse, usernameController.text, passwordController.text);
+                        bool islogin = await mySession.login(myCourse,
+                            usernameController.text, passwordController.text);
                         if (islogin) {
                           await userLogIn();
                         }
@@ -105,7 +111,8 @@ class _LoginPageState extends State<LoginPage> {
                   height: 20,
                 ),
                 // login status message
-                if (mySession.loginStatus.isNotEmpty && mySession.isLoginLoading == false)
+                if (mySession.loginStatus.isNotEmpty &&
+                    mySession.isLoginLoading == false)
                   Text(
                     mySession.loginStatus,
                     style: const TextStyle(fontSize: 14, color: Colors.red),
