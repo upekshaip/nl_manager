@@ -1,0 +1,58 @@
+import 'package:flutter/material.dart';
+
+class AttendancePage extends StatefulWidget {
+  @override
+  _AttendancePageState createState() => _AttendancePageState();
+}
+
+class _AttendancePageState extends State<AttendancePage> {
+  bool isLoading = true;
+  List<dynamic> attendanceData = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchAttendance();
+  }
+
+  Future<void> fetchAttendance() async {
+    // Mock API call
+    await Future.delayed(Duration(seconds: 2));
+
+    // Replace this with real API call and parsing
+    final data = [
+      {'course': 'Database Systems', 'attended': 12, 'total': 14},
+      {'course': 'Software Engineering', 'attended': 10, 'total': 12},
+    ];
+
+    setState(() {
+      attendanceData = data;
+      isLoading = false;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('My Attendance')),
+      body: isLoading
+          ? Center(child: CircularProgressIndicator())
+          : ListView.builder(
+              itemCount: attendanceData.length,
+              itemBuilder: (context, index) {
+                final course = attendanceData[index];
+                final percent = (course['attended'] / course['total'] * 100).toStringAsFixed(1);
+
+                return Card(
+                  margin: EdgeInsets.all(8),
+                  child: ListTile(
+                    title: Text(course['course']),
+                    subtitle: Text('Attended: ${course['attended']} / ${course['total']}'),
+                    trailing: Text('$percent%'),
+                  ),
+                );
+              },
+            ),
+    );
+  }
+}
