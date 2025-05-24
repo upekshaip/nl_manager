@@ -8,6 +8,15 @@
     "description": "A new Flutter project.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
+    "Response":
+    
+      {
+        "course": "Database Systems",
+        "attended": 12,
+        "total": 14
+      },
+      
+    
     "icons": [
         {
             "src": "icons/Icon-192.png",
