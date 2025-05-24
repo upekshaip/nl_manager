@@ -5,6 +5,8 @@ import 'package:nlmanager/components/primary_btn.dart';
 import 'package:nlmanager/pages/menu_page.dart';
 import 'package:nlmanager/tasks/course_state.dart';
 import 'package:provider/provider.dart';
+import 'package:hive/hive.dart';
+import 'package:nlmanager/tasks/session_state.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,6 +18,15 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
+
+  bool autoLogin = false;
+  int schedule = 6;
+
+  @override
+  void initState() {
+    super.initState();
+    loadSettings();
+  }
 
   // user login
   Future userLogIn() async {
@@ -32,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
     var box = Hive.box('nlmanager');
 
     autoLogin = box.get("auto_login", defaultValue: false);
-    Map<String, dynamic>? defaultValue = {
+    Map<String, dynamic> defaultValue = {
       "username": "",
       "password": "",
       "schedule": 6
@@ -40,20 +51,19 @@ class _LoginPageState extends State<LoginPage> {
     Map<dynamic, dynamic>? userData =
         box.get("user_data", defaultValue: defaultValue);
 
-    usernameController.text = userData["username"];
-    passwordController.text = userData["password"];
-    schedule = userData["schedule"];
-
-    notifyListeners();
+    usernameController.text = userData?["username"] ?? "";
+    passwordController.text = userData?["password"] ?? "";
+    schedule = userData?["schedule"] ?? 6;
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer2<SessionStateProvider, CourseStateProvider>(
+    return Consumer2<SessionState, CourseStateProvider>(
       builder: (context, mySession, myCourse, child) => Scaffold(
-          backgroundColor: Theme.of(context).colorScheme.surface,
-          body: SafeArea(
-              child: Center(
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        body: SafeArea(
+          child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -76,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                 // login fields
                 MyTextFeild(
                   controller: usernameController,
-                  isEnabled: !mySession.isLoginLoading,
+                  isEnabled: !(mySession.isLoginLoading),
                   hintText: "Username",
                   obscureText: false,
                 ),
@@ -85,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 MyTextFeild(
                   controller: passwordController,
-                  isEnabled: !mySession.isLoginLoading,
+                  isEnabled: !(mySession.isLoginLoading),
                   hintText: "Password",
                   obscureText: true,
                 ),
@@ -93,14 +103,17 @@ class _LoginPageState extends State<LoginPage> {
                   height: 30,
                 ),
                 // login button
-                if (mySession.isLoginLoading == false)
+                if (!mySession.isLoginLoading)
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: PrimaryBtn(
                       text: "Login",
                       onTap: () async {
-                        bool islogin = await mySession.login(myCourse,
-                            usernameController.text, passwordController.text);
+                        bool islogin = await mySession.login(
+                          myCourse,
+                          usernameController.text,
+                          passwordController.text,
+                        );
                         if (islogin) {
                           await userLogIn();
                         }
@@ -112,12 +125,11 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 // login status message
                 if (mySession.loginStatus.isNotEmpty &&
-                    mySession.isLoginLoading == false)
+                    !mySession.isLoginLoading)
                   Text(
                     mySession.loginStatus,
                     style: const TextStyle(fontSize: 14, color: Colors.red),
                   ),
-
                 if (mySession.isLoginLoading) const MyLoading(),
                 // developer info
                 const SizedBox(
@@ -129,7 +141,9 @@ class _LoginPageState extends State<LoginPage> {
                 )
               ],
             ),
-          ))),
+          ),
+        ),
+      ),
     );
   }
 }

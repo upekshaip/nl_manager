@@ -75,8 +75,11 @@ class MyHelper {
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Colors.grey.shade800,
-          title: Text('Permission Required', style: TextStyle(color: Colors.grey.shade200)),
-          content: Text('This app needs storage and notification permission to continue.', style: TextStyle(color: Colors.grey.shade300)),
+          title: Text('Permission Required',
+              style: TextStyle(color: Colors.grey.shade200)),
+          content: Text(
+              'This app needs storage and notification permission to continue.',
+              style: TextStyle(color: Colors.grey.shade300)),
           actions: [
             TextButton(
               onPressed: () {
@@ -89,7 +92,9 @@ class MyHelper {
                 Navigator.of(context).pop();
                 var status = await Permission.storage.request();
                 if (status.isGranted) {
-                  Navigator.pushNamed(context, '/modules');
+                  if (Navigator.canPop(context)) {
+                    Navigator.pushNamed(context, '/modules');
+                  }
                 } else if (status.isPermanentlyDenied || status.isDenied) {
                   openAppSettings();
                 }
@@ -108,9 +113,11 @@ class MyHelper {
     for (var course in courseData) {
       for (var section in course["contents"]) {
         for (var file in section["section_content"]) {
-          if (file.containsKey("file_type") && (file["file_type"] == "File" || file["file_type"] == "Folder")) {
+          if (file.containsKey("file_type") &&
+              (file["file_type"] == "File" || file["file_type"] == "Folder")) {
             // temp.add(file["file_type"]);
-            bool fileExists = existingFiles.any((item) => item.path == '/storage/emulated/0/NLManager/${file["path"]}');
+            bool fileExists = existingFiles.any((item) =>
+                item.path == '/storage/emulated/0/NLManager/${file["path"]}');
             if (!fileExists) {
               file["d_state"] = "pending";
               temp.add(file);
@@ -131,7 +138,8 @@ class MyHelper {
   }
 
 // normal notifications
-  Future<void> showProgressNotification({required String title, required double progress}) async {
+  Future<void> showProgressNotification(
+      {required String title, required double progress}) async {
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: 1,
@@ -145,7 +153,8 @@ class MyHelper {
     );
   }
 
-  Future<void> showNotification({required String title, required String body}) async {
+  Future<void> showNotification(
+      {required String title, required String body}) async {
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: 1,
@@ -159,7 +168,8 @@ class MyHelper {
   }
 
   // scheduled notifications
-  Future<void> scheduledProgressNotification({required String title, required double progress}) async {
+  Future<void> scheduledProgressNotification(
+      {required String title, required double progress}) async {
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: 1,
@@ -173,7 +183,8 @@ class MyHelper {
     );
   }
 
-  Future<void> scheduledNotification({required String title, required String body}) async {
+  Future<void> scheduledNotification(
+      {required String title, required String body}) async {
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: 1,
@@ -210,17 +221,15 @@ class MyHelper {
 // workmanager callback (MAJOR)
   void callbackDispatcher() async {
     Workmanager().executeTask((task, inputData) async {
-      MyHelper().scheduledNotification(title: "⏰ Scheduled Scan Started!", body: "Scanning for missing files and todos...");
+      MyHelper().scheduledNotification(
+          title: "⏰ Scheduled Scan Started!",
+          body: "Scanning for missing files and todos...");
       await ScheduleTask().run();
       return Future.value(true);
     });
   }
-}
-  String rmKeys(String text) {
-    return text.replaceAll(RegExp(r'[\[\]{}]'), '');
-  }
-}
-  String rmKeys(String str) {
+
+  String sanitizeFileName(String str) {
     var keys = ["\\", "/", ":", "*", "?", "\"", "^", ">", "<", "|", "\n", "\t"];
     if (str.contains("\\") || str.contains("/")) {
       str = str.replaceAll("/", "or");
@@ -236,3 +245,4 @@ class MyHelper {
     }
     return str.trim();
   }
+}

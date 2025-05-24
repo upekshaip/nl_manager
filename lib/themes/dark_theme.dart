@@ -71,7 +71,7 @@ ThemeData darkTheme = ThemeData(
       labelStyle: TextStyle(color: Colors.white70),
       hintStyle: TextStyle(color: Colors.white60),
     ),
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       color: Colors.grey.shade900,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       shadowColor: Colors.black54,
