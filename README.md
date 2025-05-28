@@ -4,10 +4,10 @@
 ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
 ![Android Studio](https://img.shields.io/badge/Android%20Studio-3DDC84?style=for-the-badge&logo=android-studio&logoColor=white)
 ![Repo Size](https://img.shields.io/github/repo-size/upekshaip/nl_manager?style=for-the-badge)
-![GitHub stars](https://img.shields.io/github/stars/upekshaip/nl_manager?style=social)
+![GitHub Stars](https://img.shields.io/github/stars/upekshaip/nl_manager?style=for-the-badge&logo=github&label=Stars)
 
 
-**Nlearn_manager**  Mobile application developed using Flutter. This project Make easy to manage your University learning resources, track progress, and stay organized. It is designed to be modular and scalable, making it easy to add new features in the future.
+**Nlearn_manager** Mobile application developed using Flutter. This project Make easy to manage your University learning resources, track progress, and stay organized. It is designed to be modular and scalable, making it easy to add new features in the future.
 
 ## 🚀 Features
 
