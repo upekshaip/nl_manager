@@ -46,22 +46,38 @@ flutter run
 ```
 
 ## 📸 Screenshots
-![Login](https://github.com/user-attachments/assets/87f2a29d-8562-42fb-bc24-7ab2900d2733)
-**Login_Page**
-![Menu](https://github.com/user-attachments/assets/b6651dc1-58df-4363-b330-bddca41df542)
-**Home_Page**
-![Modules](https://github.com/user-attachments/assets/8bbe0e5d-08de-49b4-8266-22ae3dc59791)
-**Modules_Page**
-![To Do](https://github.com/user-attachments/assets/088c5be7-3e8c-42aa-98b2-54dd8af0c44a)
-**To_Do_Page**
-![Settings ](https://github.com/user-attachments/assets/288083a4-9bb3-4fa6-b8c9-2459b3b3e1d9)
-**Settings_Page**
-![Notifications](https://github.com/user-attachments/assets/6b236dd5-350d-4066-9f00-e06a4f5a09e7)
-**Realtime_Notifications**
-![Downloader] (https://github.com/user-attachments/assets/a57e2261-4d95-481d-82f4-0be41b6c1b0e)
-**Downloader_Page**
-![About](https://github.com/user-attachments/assets/87c54f99-e7f3-4f80-8395-4ea53e0f4243)
-**About_Page**
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/87f2a29d-8562-42fb-bc24-7ab2900d2733" alt="Login_Page" width="250"/>
+    <br/><b>Login_Page</b>
+</p>
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/b6651dc1-58df-4363-b330-bddca41df542" alt="Home_Page" width="250"/>
+    <br/><b>Home_Page</b>
+</p>
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/8bbe0e5d-08de-49b4-8266-22ae3dc59791" alt="Modules_Page" width="250"/>
+    <br/><b>Modules_Page</b>
+</p>
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/088c5be7-3e8c-42aa-98b2-54dd8af0c44a" alt="To_Do_Page" width="250"/>
+    <br/><b>To_Do_Page</b>
+</p>
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/288083a4-9bb3-4fa6-b8c9-2459b3b3e1d9" alt="Settings_Page" width="250"/>
+    <br/><b>Settings_Page</b>
+</p>
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/6b236dd5-350d-4066-9f00-e06a4f5a09e7" alt="Realtime_Notifications" width="250"/>
+    <br/><b>Realtime_Notifications</b>
+</p>
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/a57e2261-4d95-481d-82f4-0be41b6c1b0e" alt="Downloader_Page" width="250"/>
+    <br/><b>Downloader_Page</b>
+</p>
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/87c54f99-e7f3-4f80-8395-4ea53e0f4243" alt="About_Page" width="250"/>
+    <br/><b>About_Page</b>
+</p>
 
 ## ✨ Future Enhancements
 
