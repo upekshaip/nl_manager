@@ -1,16 +1,122 @@
-# nlmanager
+# 📱 Nlearn_manager
 
-A new Flutter project.
+![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+![Android Studio](https://img.shields.io/badge/Android%20Studio-3DDC84?style=for-the-badge&logo=android-studio&logoColor=white)
+![Repo Size](https://img.shields.io/github/repo-size/upekshaip/nl_manager?style=for-the-badge)
+![GitHub stars](https://img.shields.io/github/stars/upekshaip/nl_manager?style=social)
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+**Nlearn_manager**  Mobile application developed using Flutter. This project Make easy to manage your University learning resources, track progress, and stay organized. It is designed to be modular and scalable, making it easy to add new features in the future.
 
-A few resources to get you started if this is your first Flutter project:
+## 🚀 Features
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Modular and scalable architecture
+- Responsive UI
+- Real-time notifications
+- User authentication
+- To-do list management
+- Download manager for resources
+- Settings for user preferences
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## 🛠️ Getting Started
+
+### Prerequisites
+
+- [Flutter SDK](https://flutter.dev/docs/get-started/install)
+- [Dart SDK](https://dart.dev/get-dart)
+- IDE like [Android Studio](https://developer.android.com/studio) or [VS Code](https://code.visualstudio.com/)
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/upekshaip/nl_manager.git
+
+# Navigate into the project directory
+cd nl_manager
+
+# Install dependencies
+flutter pub get
+
+# Run the app
+flutter run
+
+```
+
+## 📸 Screenshots
+![Login](https://github.com/user-attachments/assets/87f2a29d-8562-42fb-bc24-7ab2900d2733)
+**Login_Page**
+![Menu](https://github.com/user-attachments/assets/b6651dc1-58df-4363-b330-bddca41df542)
+**Home_Page**
+![Modules](https://github.com/user-attachments/assets/8bbe0e5d-08de-49b4-8266-22ae3dc59791)
+**Modules_Page**
+![To Do](https://github.com/user-attachments/assets/088c5be7-3e8c-42aa-98b2-54dd8af0c44a)
+**To_Do_Page**
+![Settings ](https://github.com/user-attachments/assets/288083a4-9bb3-4fa6-b8c9-2459b3b3e1d9)
+**Settings_Page**
+![Notifications](https://github.com/user-attachments/assets/6b236dd5-350d-4066-9f00-e06a4f5a09e7)
+**Realtime_Notifications**
+![Downloader] (https://github.com/user-attachments/assets/a57e2261-4d95-481d-82f4-0be41b6c1b0e)
+**Downloader_Page**
+![About](https://github.com/user-attachments/assets/87c54f99-e7f3-4f80-8395-4ea53e0f4243)
+**About_Page**
+
+## ✨ Future Enhancements
+
+- Advanced Search and Filter Options
+- User Analytics Dashboard
+- Customization Options
+
+## 🤝 Contributing
+* Contributions will be managed through GitHub pull requests following the project's contribution guidelines.
+
+<table style="width:100%">
+  <tr>
+    <th>Student ID</th>
+    <th>Name</th>
+    <th>GitHub Username</th>
+  </tr>
+  <tr>
+    <td>27292</td>
+    <td>GUI Perera (Group Leader)</td>
+    <td><a href="https://github.com/upekshaip">@upekshaip</a></td>
+  </tr>
+  <tr>
+    <td>27601</td>
+    <td>SWKR Pinsiri</td>
+    <td><a href="https://github.com/Kavindu-R">@Kavindu-R</a></td>
+  </tr>
+   <tr>
+    <td>27958</td>
+    <td>MCA Jayasingha</td>
+    <td><a href="https://github.com/ChethakaJayasingha">@ChethakaJayasingha</a></td>
+  </tr>
+  <tr>
+    <td>27578</td>
+    <td>MJM Shaahid</td>
+    <td><a href="https://github.com/Shaahidzx">@Shaahidzx</a></td>
+  </tr>
+  <tr>
+    <td>27176</td>
+    <td>KTN Weerathunga</td>
+    <td><a href="https://github.com/Nimdinu-Weerathunga">@Nimdinu-Weerathunga</a></td>
+  </tr>
+   <tr>
+    <td>27177</td>
+    <td>KTS Weerathunga</td>
+    <td><a href="https://github.com/ktsweerathunga">@ktsweerathunga</a></td>
+  </tr>
+   <tr>
+    <td>30003</td>
+    <td>RDK Piumal</td>
+    <td><a href="https://github.com/kavinduabc">@kavinduabc</a></td>
+  
+</table>
+
+
+
+
+
+
