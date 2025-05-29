@@ -13,15 +13,11 @@ class PrimaryBtn extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 10),
         margin: EdgeInsets.only(top: 16),
-        decoration: BoxDecoration(
-            color: Colors.blueAccent.shade700,
-            borderRadius: BorderRadius.circular(30),
-            border: Border.all(color: Theme.of(context).colorScheme.primary)),
+        decoration: BoxDecoration(color: Colors.blueAccent.shade700, borderRadius: BorderRadius.circular(30), border: Border.all(color: Theme.of(context).colorScheme.primary)),
         child: Center(
           child: Text(
             text,
-            style: TextStyle(
-                color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ),
       ),

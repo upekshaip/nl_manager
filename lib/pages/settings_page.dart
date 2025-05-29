@@ -71,19 +71,15 @@ class SettingsPage extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Colors.grey.shade900, // Dark background
                         borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                            color: Colors.grey.shade700), // Subtle border
+                        border: Border.all(color: Colors.grey.shade700), // Subtle border
                       ),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12), // Inner padding
+                      padding: const EdgeInsets.symmetric(horizontal: 12), // Inner padding
                       child: DropdownButton<int>(
                         dropdownColor: Colors.black87, // Dark dropdown menu
                         value: mySettings.schedule,
-                        style:
-                            const TextStyle(fontSize: 16, color: Colors.white),
+                        style: const TextStyle(fontSize: 16, color: Colors.white),
                         isExpanded: true,
-                        icon: const Icon(Icons.arrow_drop_down,
-                            color: Colors.white),
+                        icon: const Icon(Icons.arrow_drop_down, color: Colors.white),
                         onChanged: (int? newValue) {
                           mySettings.setSchedule(newValue!);
                         },
@@ -115,9 +111,7 @@ class SettingsPage extends StatelessWidget {
                             saved,
                             style: TextStyle(color: Colors.white),
                           ), // Your message
-                          duration: Duration(
-                              seconds:
-                                  5), // Duration for which the Snackbar will be shown
+                          duration: Duration(seconds: 5), // Duration for which the Snackbar will be shown
                         ),
                       );
                     }

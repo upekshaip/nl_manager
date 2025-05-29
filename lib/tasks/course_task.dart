@@ -102,6 +102,32 @@ class Course {
     return str.trim();
   }
 
+  String getExt(String url) {
+    String ext = "unknown";
+    if (url.contains("text")) {
+      ext = "txt";
+    }
+    if (url.contains("pdf")) {
+      ext = "pdf";
+    }
+    if (url.contains("powerpoint")) {
+      ext = "pptx";
+    }
+    if (url.contains("document")) {
+      ext = "docx";
+    }
+    if (url.contains("spreadsheet")) {
+      ext = "xlsx";
+    }
+    if (url.contains("mpeg")) {
+      ext = "mpeg";
+    }
+    if (url.contains("folder")) {
+      ext = "zip";
+    }
+    return ext;
+  }
+
   Future<List<dynamic>?> getAllCourseInfo(List<dynamic> data) async {
     // inside the course (TODO: get all course content at onece and then filter)
     int count = 0;
@@ -113,7 +139,7 @@ class Course {
         }
         // notification
         count += 1;
-        double progress = (data.isEmpty) ? 0 : count / data.length;
+        double progress = (data.length == 0) ? 0 : count / data.length;
         await MyHelper().showProgressNotification(title: "🔍 Scanning NLearn Files...", progress: progress * 100);
 
         var doc = parse(couseRes.body);
@@ -170,5 +196,17 @@ class Course {
       // print(e);
       return null;
     }
+  }
+
+  Future<Map<String, dynamic>> getAllCourses() async {
+    Map<String, dynamic> courseData = await getCourses();
+    if (courseData.containsKey("error")) {
+      return {"error": courseData["error"]};
+    }
+    var finalData = await getAllCourseInfo(courseData["courses"]);
+    if (finalData == null) {
+      return {"error": "Failed to get course content"};
+    }
+    return {"data": finalData};
   }
 }

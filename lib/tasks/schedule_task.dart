@@ -12,18 +12,11 @@ class ScheduleTask {
 
     if (!autoLogin) {
       Hive.close();
-      MyHelper().scheduledNotification(
-          title: "🔒 Auto login is off",
-          body: "Please enable auto login in settings ⚙️");
+      MyHelper().scheduledNotification(title: "🔒 Auto login is off", body: "Please enable auto login in settings ⚙️");
       return;
     }
-    Map<String, dynamic>? defaultValue = {
-      "username": "",
-      "password": "",
-      "schedule": 6
-    };
-    Map<dynamic, dynamic>? userData =
-        box.get("user_data", defaultValue: defaultValue);
+    Map<String, dynamic>? defaultValue = {"username": "", "password": "", "schedule": 6};
+    Map<dynamic, dynamic>? userData = box.get("user_data", defaultValue: defaultValue);
     String username = userData!["username"];
     String password = userData["password"];
     // print("=======================================================");
@@ -31,26 +24,20 @@ class ScheduleTask {
     // print("=======================================================");
     Hive.close();
     if (username.isEmpty || password.isEmpty) {
-      MyHelper().scheduledNotification(
-          title: "❌ Auto login failed",
-          body: "Username or password is empty 🔑");
+      MyHelper().scheduledNotification(title: "❌ Auto login failed", body: "Username or password is empty 🔑");
       return;
     }
 
     // login
     var session = HttpSession();
-    Login myLogin =
-        Login(username: username, password: password, session: session);
+    Login myLogin = Login(username: username, password: password, session: session);
     var tokens = await myLogin.getToken();
     if (tokens!.containsKey("error")) {
-      MyHelper().scheduledNotification(
-          title: "❌ Auto login failed", body: tokens["error"]!);
+      MyHelper().scheduledNotification(title: "❌ Auto login failed", body: tokens["error"]!);
       return;
     }
     if (tokens.containsKey("cookie")) {
-      MyHelper().scheduledNotification(
-          title: "✅ Auto login success 🎉",
-          body: "Welcome ${tokens["username"]} 👋");
+      MyHelper().scheduledNotification(title: "✅ Auto login success 🎉", body: "Welcome ${tokens["username"]} 👋");
     }
     Course myCourse = Course(tokens: tokens, session: session, reverseDays: 15);
     Map<String, dynamic> courseData = await myCourse.getAllCourses();
@@ -59,16 +46,12 @@ class ScheduleTask {
     session.close();
 
     if (courseData.containsKey("error") || todos.containsKey("error")) {
-      MyHelper().scheduledNotification(
-          title: "❗️ Error occurred",
-          body: "Failed to get courses or todos 📚");
+      MyHelper().scheduledNotification(title: "❗️ Error occurred", body: "Failed to get courses or todos 📚");
       return;
     }
-    List missingFiles =
-        await MyHelper().onlyGetMissingFiles(courseData["data"]);
+    List missingFiles = await MyHelper().onlyGetMissingFiles(courseData["data"]);
 
-    String subTitle =
-        "📂 Missing files: ${missingFiles.length} | 📝 Todos: ${todos["todos"].length}";
+    String subTitle = "📂 Missing files: ${missingFiles.length} | 📝 Todos: ${todos["todos"].length}";
     String title = "✅ You are up to date 🎉";
     if (missingFiles.isNotEmpty) {
       title = "❗️ You have ${missingFiles.length} missing files 📂";

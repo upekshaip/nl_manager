@@ -38,14 +38,8 @@ class _MyCourseListState extends State<MyCourseList> {
                     title: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(course["fullname"],
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey.shade300)),
-                        Text(course["coursecategory"],
-                            style: TextStyle(
-                                fontSize: 12, color: Colors.grey.shade400)),
+                        Text(course["fullname"], style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.grey.shade300)),
+                        Text(course["coursecategory"], style: TextStyle(fontSize: 12, color: Colors.grey.shade400)),
                         const SizedBox(height: 8),
                         Row(
                           children: [
@@ -57,8 +51,7 @@ class _MyCourseListState extends State<MyCourseList> {
                               ),
                             ),
                             const SizedBox(width: 8),
-                            Text('${course["progress"]}%',
-                                style: TextStyle(color: Colors.grey.shade400)),
+                            Text('${course["progress"]}%', style: TextStyle(color: Colors.grey.shade400)),
                           ],
                         ),
                       ],

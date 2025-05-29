@@ -6,12 +6,7 @@ class MySquareBtn extends StatelessWidget {
   final String label;
   final Color color;
 
-  const MySquareBtn(
-      {super.key,
-      required this.onPressed,
-      required this.icon,
-      required this.label,
-      this.color = Colors.white});
+  const MySquareBtn({super.key, required this.onPressed, required this.icon, required this.label, this.color = Colors.white});
 
   @override
   Widget build(BuildContext context) {

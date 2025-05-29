@@ -7,8 +7,7 @@ class Login {
   final HttpSession session;
   String loginUrl = "https://nlearn.nsbm.ac.lk/login/index.php";
 
-  Login(
-      {required this.username, required this.password, required this.session});
+  Login({required this.username, required this.password, required this.session});
 
   Future<Map<String, String?>?> getToken() async {
     try {
@@ -35,29 +34,21 @@ class Login {
       );
 
       if (postResponse.statusCode != 200) {
-        throw Exception(
-            'Failed to login. Status code: ${postResponse.statusCode}');
+        throw Exception('Failed to login. Status code: ${postResponse.statusCode}');
       }
 
       if (postResponse.request?.url == Uri.parse(loginUrl)) {
         throw Exception('Login failed. Check username and password');
       }
-      var mainPageResponse =
-          await session.get(Uri.parse("https://nlearn.nsbm.ac.lk/my/"));
+      var mainPageResponse = await session.get(Uri.parse("https://nlearn.nsbm.ac.lk/my/"));
       if (mainPageResponse.statusCode != 200) {
         throw Exception('Failed to get main page');
       }
       var mainPage = parse(mainPageResponse.body);
-      var userNameElement =
-          mainPage.querySelector(".d-md-inline-block")?.text.trim();
-      var sesskey =
-          mainPage.querySelector("input[name='sesskey']")?.attributes["value"];
+      var userNameElement = mainPage.querySelector(".d-md-inline-block")?.text.trim();
+      var sesskey = mainPage.querySelector("input[name='sesskey']")?.attributes["value"];
 
-      return {
-        "cookie": session.cookieStore.cookies.first.value,
-        "sesskey": sesskey,
-        "username": userNameElement
-      };
+      return {"cookie": session.cookieStore.cookies.first.value, "sesskey": sesskey, "username": userNameElement};
     } catch (e) {
       print(e);
       return {"error": e.toString()};

@@ -6,7 +6,6 @@
 ![Repo Size](https://img.shields.io/github/repo-size/upekshaip/nl_manager?style=for-the-badge)
 ![GitHub Stars](https://img.shields.io/github/stars/upekshaip/nl_manager?style=for-the-badge&logo=github&label=Stars)
 
-
 **Nlearn_manager** Mobile application developed using Flutter. This project Make easy to manage your University learning resources, track progress, and stay organized. It is designed to be modular and scalable, making it easy to add new features in the future.
 
 ## 🚀 Features
@@ -18,7 +17,6 @@
 - To-do list management
 - Download manager for resources
 - Settings for user preferences
-
 
 ## 🛠️ Getting Started
 
@@ -45,39 +43,43 @@ flutter run
 
 ```
 
-## 📸 Screenshots
-<p align="center">
-    <img src="https://github.com/user-attachments/assets/87f2a29d-8562-42fb-bc24-7ab2900d2733" alt="Login_Page" width="250"/>
-    <br/><b>Login_Page</b>
-</p>
-<p align="center">
-    <img src="https://github.com/user-attachments/assets/b6651dc1-58df-4363-b330-bddca41df542" alt="Home_Page" width="250"/>
-    <br/><b>Home_Page</b>
-</p>
-<p align="center">
-    <img src="https://github.com/user-attachments/assets/8bbe0e5d-08de-49b4-8266-22ae3dc59791" alt="Modules_Page" width="250"/>
-    <br/><b>Modules_Page</b>
-</p>
-<p align="center">
-    <img src="https://github.com/user-attachments/assets/088c5be7-3e8c-42aa-98b2-54dd8af0c44a" alt="To_Do_Page" width="250"/>
-    <br/><b>To_Do_Page</b>
-</p>
-<p align="center">
-    <img src="https://github.com/user-attachments/assets/288083a4-9bb3-4fa6-b8c9-2459b3b3e1d9" alt="Settings_Page" width="250"/>
-    <br/><b>Settings_Page</b>
-</p>
-<p align="center">
-    <img src="https://github.com/user-attachments/assets/6b236dd5-350d-4066-9f00-e06a4f5a09e7" alt="Realtime_Notifications" width="250"/>
-    <br/><b>Realtime_Notifications</b>
-</p>
-<p align="center">
-    <img src="https://github.com/user-attachments/assets/a57e2261-4d95-481d-82f4-0be41b6c1b0e" alt="Downloader_Page" width="250"/>
-    <br/><b>Downloader_Page</b>
-</p>
-<p align="center">
-    <img src="https://github.com/user-attachments/assets/87c54f99-e7f3-4f80-8395-4ea53e0f4243" alt="About_Page" width="250"/>
-    <br/><b>About_Page</b>
-</p>
+<div align="center">
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/87f2a29d-8562-42fb-bc24-7ab2900d2733" alt="Login_Page" width="200"/><br/><b>Login Page</b>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/b6651dc1-58df-4363-b330-bddca41df542" alt="Home_Page" width="200"/><br/><b>Home Page</b>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/8bbe0e5d-08de-49b4-8266-22ae3dc59791" alt="Modules_Page" width="200"/><br/><b>Modules Page</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/088c5be7-3e8c-42aa-98b2-54dd8af0c44a" alt="To_Do_Page" width="200"/><br/><b>To-Do Page</b>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/288083a4-9bb3-4fa6-b8c9-2459b3b3e1d9" alt="Settings_Page" width="200"/><br/><b>Settings Page</b>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/6b236dd5-350d-4066-9f00-e06a4f5a09e7" alt="Realtime_Notifications" width="200"/><br/><b>Realtime Notifications</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/a57e2261-4d95-481d-82f4-0be41b6c1b0e" alt="Downloader_Page" width="200"/><br/><b>Downloader Page</b>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/87c54f99-e7f3-4f80-8395-4ea53e0f4243" alt="About_Page" width="200"/><br/><b>About Page</b>
+    </td>
+    <td></td>
+  </tr>
+</table>
+
+</div>
 
 ## ✨ Future Enhancements
 
@@ -86,7 +88,8 @@ flutter run
 - Customization Options
 
 ## 🤝 Contributing
-* Contributions will be managed through GitHub pull requests following the project's contribution guidelines.
+
+- Contributions will be managed through GitHub pull requests following the project's contribution guidelines.
 
 <table style="width:100%">
   <tr>
@@ -130,9 +133,3 @@ flutter run
     <td><a href="https://github.com/kavinduabc">@kavinduabc</a></td>
   
 </table>
-
-
-
-
-
-

@@ -8,37 +8,32 @@ ThemeData darkTheme = ThemeData(
       primary: Colors.grey.shade900,
       secondary: Colors.grey.shade700,
       tertiary: Colors.grey.shade500,
+      background: Colors.black,
       onPrimary: Colors.white,
       onSecondary: Colors.white70,
       onSurface: Colors.white60,
+      onBackground: Colors.white54,
     ),
     progressIndicatorTheme: ProgressIndicatorThemeData(
       color: Colors.blue.shade500,
     ),
     textTheme: TextTheme(
-      headlineLarge: TextStyle(
-          fontSize: 26, fontWeight: FontWeight.bold, color: Colors.white),
-      headlineMedium: TextStyle(
-          fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white70),
-      headlineSmall: TextStyle(
-          fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white60),
+      headlineLarge: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.white),
+      headlineMedium: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white70),
+      headlineSmall: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white60),
       bodyLarge: TextStyle(fontSize: 16, color: Colors.white70),
       bodyMedium: TextStyle(fontSize: 14, color: Colors.white60),
       bodySmall: TextStyle(fontSize: 12, color: Colors.white54),
-      titleLarge: TextStyle(
-          fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-      titleMedium: TextStyle(
-          fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white70),
-      titleSmall: TextStyle(
-          fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white60),
+      titleLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+      titleMedium: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white70),
+      titleSmall: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white60),
       labelLarge: TextStyle(fontSize: 16, color: Colors.white),
       labelMedium: TextStyle(fontSize: 16, color: Colors.white70),
       labelSmall: TextStyle(fontSize: 16, color: Colors.white54),
     ),
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.grey.shade900,
-      titleTextStyle: TextStyle(
-          fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+      titleTextStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
       iconTheme: IconThemeData(color: Colors.white),
     ),
     buttonTheme: ButtonThemeData(
@@ -71,7 +66,7 @@ ThemeData darkTheme = ThemeData(
       labelStyle: TextStyle(color: Colors.white70),
       hintStyle: TextStyle(color: Colors.white60),
     ),
-    cardTheme: CardThemeData(
+    cardTheme: CardTheme(
       color: Colors.grey.shade900,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       shadowColor: Colors.black54,
@@ -95,8 +90,7 @@ ThemeData darkTheme = ThemeData(
     dropdownMenuTheme: DropdownMenuThemeData(
       menuStyle: MenuStyle(
         backgroundColor: WidgetStateProperty.all(Colors.grey.shade900),
-        shape: WidgetStateProperty.all(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
+        shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
       ),
       textStyle: TextStyle(color: Colors.white70),
     ));

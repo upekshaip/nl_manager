@@ -8,13 +8,6 @@
     "description": "A new Flutter project.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
-    "Response":
-    
-      {
-        
-      },
-      
-    
     "icons": [
         {
             "src": "icons/Icon-192.png",

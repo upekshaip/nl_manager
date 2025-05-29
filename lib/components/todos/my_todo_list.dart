@@ -28,10 +28,7 @@ class TodosList extends StatelessWidget {
                   },
                   child: const Text(
                     "My Todos",
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                        decoration: TextDecoration.underline),
+                    style: TextStyle(fontSize: 16, color: Colors.white, decoration: TextDecoration.underline),
                   ),
                 ),
                 IconButton(
@@ -46,10 +43,7 @@ class TodosList extends StatelessWidget {
             ),
             if (myCourse.isTodosLoading)
               const Column(
-                children: [
-                  MyLoading(),
-                  Padding(padding: EdgeInsets.only(top: 20))
-                ],
+                children: [MyLoading(), Padding(padding: EdgeInsets.only(top: 20))],
               ),
             if (myCourse.todosError.isNotEmpty)
               Padding(
@@ -64,24 +58,14 @@ class TodosList extends StatelessWidget {
                 children: [
                   for (var todo in myCourse.todos)
                     ListTile(
-                      title: Text(todo["others"]["name"],
-                          style: const TextStyle(color: Colors.white)),
-                      subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Text(todo["deadline"],
-                                style: const TextStyle(
-                                    color: Colors.white, fontSize: 12)),
-                            const SizedBox(height: 5),
-                            Text(todo["course"]["fullname"],
-                                style: const TextStyle(
-                                    color: Colors.grey, fontSize: 11)),
-                            Text(todo["course"]["coursecategory"],
-                                style: const TextStyle(
-                                    color: Colors.grey, fontSize: 11)),
-                          ]),
-                      trailing: MyHelper().getIcons(
-                          "unknown", todo["others"]["icon"]["component"]),
+                      title: Text(todo["others"]["name"], style: const TextStyle(color: Colors.white)),
+                      subtitle: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                        Text(todo["deadline"], style: const TextStyle(color: Colors.white, fontSize: 12)),
+                        const SizedBox(height: 5),
+                        Text(todo["course"]["fullname"], style: const TextStyle(color: Colors.grey, fontSize: 11)),
+                        Text(todo["course"]["coursecategory"], style: const TextStyle(color: Colors.grey, fontSize: 11)),
+                      ]),
+                      trailing: MyHelper().getIcons("unknown", todo["others"]["icon"]["component"]),
                     ),
                 ],
               )

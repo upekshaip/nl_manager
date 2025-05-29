@@ -81,8 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: PrimaryBtn(
                       text: "Login",
                       onTap: () async {
-                        bool islogin = await mySession.login(myCourse,
-                            usernameController.text, passwordController.text);
+                        bool islogin = await mySession.login(myCourse, usernameController.text, passwordController.text);
                         if (islogin) {
                           await userLogIn();
                         }
@@ -93,8 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 20,
                 ),
                 // login status message
-                if (mySession.loginStatus.isNotEmpty &&
-                    mySession.isLoginLoading == false)
+                if (mySession.loginStatus.isNotEmpty && mySession.isLoginLoading == false)
                   Text(
                     mySession.loginStatus,
                     style: const TextStyle(fontSize: 14, color: Colors.red),
@@ -106,7 +104,11 @@ class _LoginPageState extends State<LoginPage> {
                   height: 8,
                 ),
                 Text(
-                  "Developed By Group 21",
+                  "Developed by Group 21 🎓",
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+                Text(
+                  "Mobile Application Development",
                   style: Theme.of(context).textTheme.bodyMedium,
                 )
               ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nlmanager/tasks/helpers.dart';
 
 class MySectionItem extends StatelessWidget {
   final dynamic sectionContents;
@@ -10,7 +11,11 @@ class MySectionItem extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       children: [
-        for (var sectionContent in sectionContents) ListTile(),
+        for (var sectionContent in sectionContents)
+          ListTile(
+            trailing: MyHelper().getIcons(sectionContent["ext"], sectionContent["url"]),
+            title: Text(sectionContent["file_name"], style: TextStyle(fontSize: 12, color: Colors.grey.shade300)),
+          ),
       ],
     );
   }

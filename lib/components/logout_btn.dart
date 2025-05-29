@@ -9,23 +9,17 @@ class LogoutBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer3<SessionStateProvider, CourseStateProvider,
-        DownloadStateProvider>(
-      builder: (context, mySession, myCourse, myDownloader, child) =>
-          GestureDetector(
+    return Consumer3<SessionStateProvider, CourseStateProvider, DownloadStateProvider>(
+      builder: (context, mySession, myCourse, myDownloader, child) => GestureDetector(
         onTap: () {
           mySession.logOut(myCourse, myDownloader);
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              '/login', (Route<dynamic> route) => false);
+          Navigator.of(context).pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
           Navigator.pushNamed(context, '/login');
         },
         child: Container(
           width: 90,
           padding: const EdgeInsets.symmetric(vertical: 10),
-          decoration: BoxDecoration(
-              color: Colors.red.shade900,
-              borderRadius: BorderRadius.circular(30),
-              border: Border.all(color: Colors.grey.shade800)),
+          decoration: BoxDecoration(color: Colors.red.shade900, borderRadius: BorderRadius.circular(30), border: Border.all(color: Colors.grey.shade800)),
           child: const Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -38,10 +32,7 @@ class LogoutBtn extends StatelessWidget {
                 ),
                 Text(
                   "Logout",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600),
+                  style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
                 )
               ],
             ),

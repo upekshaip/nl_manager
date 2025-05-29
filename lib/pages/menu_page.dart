@@ -14,8 +14,7 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer3<SessionStateProvider, CourseStateProvider,
-        SettingsStateProvider>(
+    return Consumer3<SessionStateProvider, CourseStateProvider, SettingsStateProvider>(
       builder: (context, mySession, myCourse, mySettings, child) => Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
@@ -29,8 +28,7 @@ class MenuPage extends StatelessWidget {
               children: [
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 16),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                   decoration: BoxDecoration(
                     color: Colors.grey.shade900,
                     borderRadius: BorderRadius.circular(10),
@@ -81,8 +79,7 @@ class MenuPage extends StatelessWidget {
                       children: [
                         MySquareBtn(
                           onPressed: () async {
-                            bool status =
-                                await MyPermissions().checkPermissions();
+                            bool status = await MyPermissions().checkPermissions();
                             if (status) {
                               Navigator.pushNamed(context, '/modules');
                             } else {
@@ -95,8 +92,7 @@ class MenuPage extends StatelessWidget {
                         ),
                         MySquareBtn(
                           onPressed: () async {
-                            bool status =
-                                await MyPermissions().checkPermissions();
+                            bool status = await MyPermissions().checkPermissions();
                             if (status) {
                               Navigator.pushNamed(context, '/downloader');
                             } else {
@@ -109,8 +105,7 @@ class MenuPage extends StatelessWidget {
                         ),
                         MySquareBtn(
                           onPressed: () async {
-                            bool status =
-                                await MyPermissions().checkPermissions();
+                            bool status = await MyPermissions().checkPermissions();
                             if (status) {
                               mySettings.loadSettings();
                               Navigator.pushNamed(context, '/settings');
@@ -127,56 +122,50 @@ class MenuPage extends StatelessWidget {
                 const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        MySquareBtn(
-                          onPressed: () async {
-                            bool status =
-                                await MyPermissions().checkPermissions();
-                            if (status) {
-                              mySettings.loadSettings();
-                              Navigator.pushNamed(context, '/todos');
-                            } else {
-                              MyHelper().showPermissionDialog(context);
-                            }
-                          },
-                          icon: Icons.event,
-                          label: "Todos",
-                          color: const Color.fromARGB(255, 232, 100, 255),
-                        ),
-                        MySquareBtn(
-                          onPressed: () async {
-                            bool status =
-                                await MyPermissions().checkPermissions();
-                            if (status) {
-                              mySettings.loadSettings();
-                              Navigator.pushNamed(context, '/instructions');
-                            } else {
-                              MyHelper().showPermissionDialog(context);
-                            }
-                          },
-                          icon: Icons.summarize,
-                          label: "Instructions",
-                          color: const Color(0xFFFFC107),
-                        ),
-                        MySquareBtn(
-                          onPressed: () async {
-                            bool status =
-                                await MyPermissions().checkPermissions();
-                            if (status) {
-                              mySettings.loadSettings();
-                              Navigator.pushNamed(context, '/about');
-                            } else {
-                              MyHelper().showPermissionDialog(context);
-                            }
-                          },
-                          icon: Icons.info,
-                          label: "About",
-                          color: const Color.fromARGB(255, 255, 100,
-                              151), // Changed to a suitable color
-                        ),
-                      ]),
+                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                    MySquareBtn(
+                      onPressed: () async {
+                        bool status = await MyPermissions().checkPermissions();
+                        if (status) {
+                          mySettings.loadSettings();
+                          Navigator.pushNamed(context, '/todos');
+                        } else {
+                          MyHelper().showPermissionDialog(context);
+                        }
+                      },
+                      icon: Icons.event,
+                      label: "Todos",
+                      color: const Color.fromARGB(255, 232, 100, 255),
+                    ),
+                    MySquareBtn(
+                      onPressed: () async {
+                        bool status = await MyPermissions().checkPermissions();
+                        if (status) {
+                          mySettings.loadSettings();
+                          Navigator.pushNamed(context, '/instructions');
+                        } else {
+                          MyHelper().showPermissionDialog(context);
+                        }
+                      },
+                      icon: Icons.summarize,
+                      label: "Instructions",
+                      color: const Color(0xFFFFC107),
+                    ),
+                    MySquareBtn(
+                      onPressed: () async {
+                        bool status = await MyPermissions().checkPermissions();
+                        if (status) {
+                          mySettings.loadSettings();
+                          Navigator.pushNamed(context, '/about');
+                        } else {
+                          MyHelper().showPermissionDialog(context);
+                        }
+                      },
+                      icon: Icons.info,
+                      label: "About",
+                      color: const Color.fromARGB(255, 255, 100, 151), // Changed to a suitable color
+                    ),
+                  ]),
                 ),
                 const SizedBox(height: 16),
                 Container(
